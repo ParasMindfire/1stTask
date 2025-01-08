@@ -1,0 +1,253 @@
+body{
+    font-display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('bg-home.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    /* overflow-y: hidden; */
+    box-sizing: border-box;
+}
+
+.heading1{
+    text-align: center;
+}
+
+.Navyy{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.Navyy img{
+    width: 150px;
+    margin: 20px 0px 0px 10px;
+}
+
+.bday{
+    margin-top: 20px;
+}
+
+.mainForm{
+    width: 60%;
+    margin:auto;
+    background: rgba(255, 217, 217, 0.2);
+    border-radius: 16px;
+    box-shadow: 25px 14px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3)
+}
+
+.paddingDiv{
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 5%;
+}
+
+.upload{
+    flex-wrap: wrap;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploadPhoto img{
+    width:120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.uploadPhotoDocs{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#myFile{
+    margin-right: 20px;
+}
+
+.mainTitle{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typewriter{
+    width:auto;
+}
+
+.typewriter h1{
+  /* word-break: break-all; */
+  color:rgb(133, 110, 110);
+  overflow: hidden;
+  border-right: .15em solid rgb(2, 14, 10);
+  white-space:nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: 
+    typing 5s steps(30, end)
+}
+
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.commonDiv{
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.nameClass{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+.nameInput:nth-child(1){
+    margin-right: 40px;
+}
+
+.nameInput:nth-child(2){
+    margin-right: 40px;
+}
+
+.genderClass{
+    padding-top: 20px;
+}
+
+.commonGenderClass{
+    margin-top:5px;
+}
+
+#textArea{
+    margin-top: 5px;
+    background: rgba(255, 217, 217, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 14px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(236, 49, 158, 0.3)
+}
+
+#textArea:focus{
+    margin-top: 5px;
+    background: rgba(202, 78, 78, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 14px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(236, 49, 158, 0.3);
+    outline:none;
+}
+
+.commonDiv input{
+    border:0px solid #000000;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
+#selectElem{
+    margin-top: 5px;
+    margin-left: 10px;
+    background: rgba(202, 78, 78, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 14px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(236, 49, 158, 0.3);
+    outline:none;
+}
+
+#textArea{
+    margin-top: 5px;
+    background: rgba(255, 217, 217, 0.2);
+    border-radius: 16px;
+    box-shadow: 10px 14px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(236, 49, 158, 0.3)
+}
+
+
+.nameClass input:focus {
+    border:0px solid #000000;
+    border-bottom-width: 1px;
+    background-color: transparent;
+    outline: none;
+  }
+
+  @media screen and (max-width:1012px){
+    .uploadPhotoDocs{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .uploadPhotoDocs button{
+        margin-top: 20px;
+        margin-right: 27px;
+    }
+
+    .paddingDiv{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (max-width:670px){
+    .uploadPhotoDocs{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .uploadPhotoDocs button{
+        margin-top: 10px;
+        margin-right: 27px;
+    }
+}
+
+
+@media screen and (max-width: 642px) {
+    .mainTitle{
+        font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 514px) {
+    .mainTitle{
+        font-size: 11px;
+    }
+  }
+
+  @media screen and (max-width: 514px) {
+    .mainTitle{
+        font-size: 9px;
+    }
+  }
+
+.btn{
+    width: 100px;
+    height:30px;
+    background: rgba(205, 131, 131, 0.2);
+    border-radius: 16px;
+    box-shadow: 7px 7px 4px rgba(117,117,107,0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    background-color: rgb(133, 110, 110);
+    color: white;
+}
+
+  
