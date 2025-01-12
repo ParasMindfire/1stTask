@@ -95,14 +95,31 @@
 
 
 
-                        <!-- <div class="commonDiv">
+                        <div class="commonDiv">
                             <div class="address">
-                                <select id="CountryList">
+                                <select id="CountryList" oninput="checkCountry()">
                                     <option>--Select a Country--</option>
                                 </select>
                             </div>
-                        </div> -->
-                          
+                        </div>
+
+                        <div class="commonDiv">
+                            <div class="address">
+                                <select id="StateList" oninput="checkState()">
+                                    <option>--Select a State--</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="commonDiv">
+                            <div class="address">
+                                <select id="cityList">
+                                    <option>--Select a city--</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
             
                         <div class="commonDiv">
                             <div class="genderClass">
@@ -179,7 +196,7 @@
                         </div>
                     
                         <div class="commonDiv">
-                            <input list="ok" name="d~atalistID" placeholder="Preferred Domain">
+                            <input list="ok" name="datalistID" placeholder="Preferred Domain">
                             <datalist id="ok">
                                 <option value="MERN">
                                 <option value="AIML">
@@ -200,7 +217,9 @@
                         
             
                         <div class="commonDiv">
-                            <input type="submit" value="Submit" name="Submit" class="btn" id="submitButton"/>
+                            <button type="submit" value="Submit" name="Submit" class="btn" id="submitButton"/>
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -231,26 +250,250 @@
 
 
     <script>
-        function check(){
-            console.log("hiiii");
-        }
 
         // -----------------Address-------------------
+        const countries=[
+            {
+                id:0,
+                country:"India",
+                states:[
+                    {
+                        idz:0,
+                        state:"Odisha",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Bhubaneswar",
+                            },{
+                                idt:1,
+                                city:"Cuttack",
+                            },{
+                                idt:2,
+                                city:"Chandikhole"
+                            }
+                        ]
+                    },{
+                        idz:1,
+                        state:"Maharastra",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Mumbai",
+                            },{
+                                idt:1,
+                                city:"Pune",
+                            },{
+                                idt:2,
+                                city:"Nagpur"
+                            }
+                        ]
+                    },{
+                        idz:2,
+                        state:"Jharkhand",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Dhanbad",
+                            },{
+                                idt:1,
+                                city:"Jamshedpur",
+                            },{
+                                idt:2,
+                                city:"Ranchi"
+                            }
+                        ]
+                    }
+                ]
+            },{
+                id:1,
+                country:"America",
+                states:[
+                    {
+                        idz:0,
+                        state:"Texas",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Houston",
+                            },{
+                                idt:1,
+                                city:"Dallas",
+                            },{
+                                idt:2,
+                                city:"Austin"
+                            }
+                        ]
+                    },{
+                        idz:1,
+                        state:"New Mexico",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Albuquerque",
+                            },{
+                                idt:1,
+                                city:"Santa fe",
+                            },{
+                                idt:2,
+                                city:"Silver City"
+                            }
+                        ]
+                    },{
+                        idz:2,
+                        state:"California",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Los Angeles",
+                            },{
+                                idt:1,
+                                city:"San Fransisco",
+                            },{
+                                idt:2,
+                                city:"San diego"
+                            }
+                        ]
+                    }
+                ]
+            },{
+                id:2,
+                country:"Pakistan",
+                states:[
+                    {
+                        idz:0,
+                        state:"Punjab",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Lahore",
+                            },{
+                                idt:1,
+                                city:"Multan",
+                            },{
+                                idt:2,
+                                city:"Faisalabad"
+                            }
+                        ]
+                    },{
+                        idz:1,
+                        state:"Balochistan",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Quetta",
+                            },{
+                                idt:1,
+                                city:"Turbat",
+                            },{
+                                idt:2,
+                                city:"Chaman"
+                            }
+                        ]
+                    },{
+                        idz:2,
+                        state:"Sindh",
+                        cities:[
+                            {
+                                idt:0,
+                                city:"Karachi",
+                            },{
+                                idt:1,
+                                city:"Hyderabad",
+                            },{
+                                idt:2,
+                                city:"Larkana"
+                            }
+                        ]
+                    }
+                ]
+            } 
+        ]
 
-        // const ListString=[{
-        //         India:[{}]
-        //     },{
-        //         America:[{}]
-        //     },{
-        //         Pakistan:[{}]
-        //     } 
-        // ]
 
-        // const countryList=document.getElementById('CountryList');
+        const countryList=document.getElementById('CountryList');
 
-        // CountryList.forEach(country=>{
-        //     console.log(country);
-        // })
+        for(let i=0;i<countries.length;i++){
+            var option = document.createElement("option");
+            option.text = countries[i].country;
+            countryList.add(option);
+        }
+
+        var globalCountryVariable;
+
+
+        function checkCountry(){
+
+            //clearing all the options
+            const statesToDisplay=document.getElementById('StateList').innerHTML=null;
+
+            const citiesToDisplay=document.getElementById('cityList').innerHTML=null;
+
+
+            let stateText=document.getElementById('StateList');
+            var optionn = document.createElement("option");
+            optionn.text = "Select A State";
+            stateText.add(optionn);
+
+            let cityText=document.getElementById('cityList');
+            var option = document.createElement("option");
+            option.text = "Select a city";
+            cityText.add(option);
+
+            
+            const countrySelected=document.getElementById('CountryList').value;
+
+            const filteredCountry=countries.find((c)=>{
+                return c.country==countrySelected;
+            })
+
+            let states=filteredCountry.states;
+            globalCountryVariable=filteredCountry.id;
+
+            // console.log("id",globalCountryVariable);
+
+            for(let i=0;i<states.length;i++){
+                const statesToDisplay=document.getElementById('StateList');
+                
+                var option = document.createElement("option");
+                option.text = states[i].state;
+                statesToDisplay.add(option);
+            }
+        }
+
+
+
+
+        function checkState(){
+            //clearing all the options
+            const citiesToDisplay=document.getElementById('cityList').innerHTML=null;
+
+            let cityText=document.getElementById('cityList');
+            var option = document.createElement("option");
+            option.text = "Select a city";
+            cityText.add(option);
+
+
+            const stateSelected=document.getElementById('StateList').value;
+
+            const filteredState=countries[globalCountryVariable].states.find((e)=>{
+                return e.state==stateSelected;
+            })
+
+            // console.log("filteredState->",filteredState);
+
+            let citiezz=filteredState.cities;
+
+            for(let i=0;i<citiezz.length;i++){
+                const cityToDisplay=document.getElementById('cityList');
+                
+                var option = document.createElement("option");
+                option.text = citiezz[i].city;
+                cityToDisplay.add(option);
+            }
+        }
+        
+
+        
 
 
     
@@ -378,54 +621,150 @@
 
     // ---------------------------tABLE---------------------
 
-
     const form=document.getElementById('userForm');
     const table=document.getElementById('peopleTable').querySelector('tbody');
 
+    const peopleArray=[];
+
+    let idz=-1;
+
+    var tr=[];
+
+    var submit=true;
+
     form.addEventListener('submit',(event)=>{
-        event.preventDefault();
+        if(submit){
+            idz+=1;
 
-        // let bool = false;
+            event.preventDefault();
 
-        // if(bool)
+            const fname = document.getElementById("first_name").value;
+            const branch = document.getElementById("brranch").value;
+            const email = document.getElementById("mail").value;
+            const confirmBday = document.getElementById("birthday").value;
 
-        const fname = document.getElementById("first_name").value;
-        const branch = document.getElementById("brranch").value;
-        const email = document.getElementById("mail").value;
-        const confirmBday = document.getElementById("birthday").value;
+            const tempObj={
+                id:idz,
+                name:fname,
+                branch:branch,
+                email:email,
+                birthday:confirmBday
+            }
+
+            peopleArray.push(tempObj);
+
+            // console.log(peopleArray);
+
+            tr[idz] = document.createElement('tr');  
+            
+            var curRow=tr[idz];
+
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            var td4 = document.createElement('td');
+            var td5 = document.createElement('td');
+
+
+            var text1 = document.createTextNode(fname);
+            var text2 = document.createTextNode(branch);
+            var text3 = document.createTextNode(email);
+            var text4 = document.createTextNode(confirmBday);
+
+
+
+            var editButton=document.createElement('button');
+            editButton.classList.add('button');
+            editButton.innerText='Edit';
+            editButton.addEventListener('click',()=>editRow(curRow));
+
+            var deleteButton=document.createElement('button');
+            deleteButton.classList.add('button','delete');
+            deleteButton.innerText='Delete';
+            deleteButton.addEventListener('click',()=>deleteRow(curRow));
+
+
+            for (var i = 0; i < 4; i++){
+                td1.appendChild(text1);
+                td2.appendChild(text2);
+                td3.appendChild(text3);
+                td4.appendChild(text4);
+                td5.appendChild(editButton);
+                td5.appendChild(deleteButton);
+
+                tr[idz].appendChild(td1);
+                tr[idz].appendChild(td2);   
+                tr[idz].appendChild(td3);
+                tr[idz].appendChild(td4); 
+                tr[idz].appendChild(td5);
+            } 
+
+            table.appendChild(tr[idz]);
+        }else{
+
+
+
+
+            submit=true;
+        }
+
+    })
+
+
+
+
+
+
+    // const form=document.getElementById('userForm');
+    // const table=document.getElementById('peopleTable').querySelector('tbody');
+
+    // form.addEventListener('submit',(event)=>{
+    //     event.preventDefault();
+
+    //     // let bool = false;
+
+    //     // if(bool)
+
+    //     const fname = document.getElementById("first_name").value;
+    //     const branch = document.getElementById("brranch").value;
+    //     const email = document.getElementById("mail").value;
+    //     const confirmBday = document.getElementById("birthday").value;
 
 
         
-        const newRow=table.insertRow();
+    //     const newRow=table.insertRow();
 
-        newRow.insertCell(0).innerText=fname;
-        newRow.insertCell(1).innerText=email;
-        newRow.insertCell(2).innerText=confirmBday;
-        newRow.insertCell(3).innerText=branch;
+    //     newRow.insertCell(0).innerText=fname;
+    //     newRow.insertCell(1).innerText=email;
+    //     newRow.insertCell(2).innerText=confirmBday;
+    //     newRow.insertCell(3).innerText=branch;
 
-        const actionsCell=newRow.insertCell(4);
+    //     const actionsCell=newRow.insertCell(4);
 
-        const editButton=document.createElement('button');
-        editButton.classList.add('button');
-        editButton.innerText='Edit';
-        editButton.addEventListener('click',()=>editRow(newRow));
+    //     const editButton=document.createElement('button');
+    //     editButton.classList.add('button');
+    //     editButton.innerText='Edit';
+    //     editButton.addEventListener('click',()=>editRow(newRow));
 
-        const deleteButton=document.createElement('button');
-        deleteButton.classList.add('button','delete');
-        deleteButton.innerText='Delete';
-        deleteButton.addEventListener('click',()=>deleteRow(newRow));
+    //     const deleteButton=document.createElement('button');
+    //     deleteButton.classList.add('button','delete');
+    //     deleteButton.innerText='Delete';
+    //     deleteButton.addEventListener('click',()=>deleteRow(newRow));
 
-        actionsCell.appendChild(editButton);
-        actionsCell.appendChild(deleteButton);
+    //     actionsCell.appendChild(editButton);
+    //     actionsCell.appendChild(deleteButton);
 
-    });
+    // });
 
     function editRow(row) {
+        console.log("row",row.innerText);
+        submit=false;
+        document.getElementById('submitButton').innerText = 'Edit';
         document.getElementById('first_name').value = row.cells[0].innerText;
         document.getElementById('mail').value = row.cells[1].innerText;
         document.getElementById('birthday').value = row.cells[2].innerText;
-        document.getElementById('branch').value = row.cells[3].innerText;
-        document.getElementById('submitButton').innerText = 'Edit';
+        // document.getElementById('branch').value = row.cells[3].innerText;
+        
     }
 
     function deleteRow(row) {

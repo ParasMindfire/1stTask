@@ -204,6 +204,29 @@ input::placeholder{
 /* ---------------------nameClass-------------------------- */
 
 
+/* ------------------------Address--------------------------- */
+
+
+.address select{
+    width:90%;
+    background-color:rgb(243, 178, 189);
+    outline: none;
+    border: 1px solid pink;
+    border-radius: 5px;
+}
+
+
+.address select:focus{
+    width:90%;
+    background-color:rgb(239, 240, 233);
+    outline: none;
+    border: 1px solid pink;
+    border-radius: 5px;
+}
+
+
+/* ------------------------Address--------------------------- */
+
 
 /* -----------------------GenderClass---------------------- */
 
