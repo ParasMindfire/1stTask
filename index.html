@@ -28,11 +28,11 @@
                     <div class="commonDiv">
                         <div class="upload">
                             <div class="uploadPhoto">
-                                <img src="/dummy-profile-pic-male1-300x300.jpg" alt="">
+                                <img class="uploadz" src="/dummy-profile-pic-male1-300x300.jpg" alt="">
                             </div>
         
                             <div class="uploadPhotoDocs">
-                                <input type="file" id="myFile" name="filename">
+                                <input type="file" id="myFile" name="filename" onchange = 'renderFile()'>
                                 <!-- <button class="btn">Upload</button> -->
 
                                 <br>
@@ -250,6 +250,23 @@
 
 
     <script>
+
+        // -------------------image upload-----------------
+
+        const renderFile = () => {
+            const render = document.querySelector('.uploadz')
+            const file = document.querySelector('input[type=file]').files[0]
+            const reader = new FileReader();
+            
+            
+            reader.addEventListener('load' , ()=> {
+                render.src = reader.result;
+            }, false)
+
+            if(file){
+                reader.readAsDataURL(file);
+            }
+        }
 
         // -----------------Address-------------------
         const countries=[
@@ -628,6 +645,8 @@
 
     let idz=-1;
 
+    let toEdit=null;
+
     var tr=[];
 
     var submit=true;
@@ -667,16 +686,15 @@
 
 
             var text1 = document.createTextNode(fname);
-            var text2 = document.createTextNode(branch);
-            var text3 = document.createTextNode(email);
-            var text4 = document.createTextNode(confirmBday);
-
-
+            var text2 = document.createTextNode(email);
+            var text3 = document.createTextNode(confirmBday);
+            var text4 = document.createTextNode(branch);
+            
 
             var editButton=document.createElement('button');
             editButton.classList.add('button');
             editButton.innerText='Edit';
-            editButton.addEventListener('click',()=>editRow(curRow));
+            editButton.addEventListener('click',()=>editRow(curRow,idz));
 
             var deleteButton=document.createElement('button');
             deleteButton.classList.add('button','delete');
@@ -701,73 +719,60 @@
 
             table.appendChild(tr[idz]);
         }else{
+            // console.log(tr[toEdit].cells[0].innerText+" "+tr[toEdit].cells[1].innerText);
+            let currObj=peopleArray[toEdit];
+
+            // console.log("Haha",peopleArray[toEdit]);
+
+            const fname = document.getElementById("first_name").value;
+            const branch = document.getElementById("brranch").value;
+            const email = document.getElementById("mail").value;
+            const confirmBday = document.getElementById("birthday").value;
 
 
+            tr[toEdit].cells[0].innerText=fname;
+            tr[toEdit].cells[1].innerText=email;
+            tr[toEdit].cells[2].innerText=confirmBday;
+            tr[toEdit].cells[3].innerText=branch;
+        
+
+            document.getElementById('submitButton').innerText = 'Submit';
 
 
             submit=true;
         }
 
+
+        form.reset();
+
     })
 
 
 
+    function editRow(row,id) {
 
+        let toFindEmail=row.cells[1].innerText;
 
+        const findobj=peopleArray.find((e)=>{
+            return e.email==toFindEmail;
+        })
 
-    // const form=document.getElementById('userForm');
-    // const table=document.getElementById('peopleTable').querySelector('tbody');
-
-    // form.addEventListener('submit',(event)=>{
-    //     event.preventDefault();
-
-    //     // let bool = false;
-
-    //     // if(bool)
-
-    //     const fname = document.getElementById("first_name").value;
-    //     const branch = document.getElementById("brranch").value;
-    //     const email = document.getElementById("mail").value;
-    //     const confirmBday = document.getElementById("birthday").value;
-
-
+        // console.log("obj",findobj);
+        // console.log("row",row.cells[1].innerText);
+        // console.log("id",id);
         
-    //     const newRow=table.insertRow();
-
-    //     newRow.insertCell(0).innerText=fname;
-    //     newRow.insertCell(1).innerText=email;
-    //     newRow.insertCell(2).innerText=confirmBday;
-    //     newRow.insertCell(3).innerText=branch;
-
-    //     const actionsCell=newRow.insertCell(4);
-
-    //     const editButton=document.createElement('button');
-    //     editButton.classList.add('button');
-    //     editButton.innerText='Edit';
-    //     editButton.addEventListener('click',()=>editRow(newRow));
-
-    //     const deleteButton=document.createElement('button');
-    //     deleteButton.classList.add('button','delete');
-    //     deleteButton.innerText='Delete';
-    //     deleteButton.addEventListener('click',()=>deleteRow(newRow));
-
-    //     actionsCell.appendChild(editButton);
-    //     actionsCell.appendChild(deleteButton);
-
-    // });
-
-    function editRow(row) {
-        console.log("row",row.innerText);
+        toEdit=findobj.id;
         submit=false;
         document.getElementById('submitButton').innerText = 'Edit';
         document.getElementById('first_name').value = row.cells[0].innerText;
         document.getElementById('mail').value = row.cells[1].innerText;
         document.getElementById('birthday').value = row.cells[2].innerText;
-        // document.getElementById('branch').value = row.cells[3].innerText;
+        document.getElementById('brranch').value = row.cells[3].innerText;
         
     }
 
     function deleteRow(row) {
+
         row.remove();
     }
 
