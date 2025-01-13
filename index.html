@@ -11,6 +11,19 @@
 
 <body>
     <div class="mainDiv">
+        <div class="modal hide">
+            <div class="modal-wrapper">
+                <div class="modalHeading">
+                    <h4>Type Your Password To Delete it</h1>
+                </div>
+
+                <div class="modalButtons">
+                    <input id="modalInput" class="modalInputClass" type="text">
+                    <button class="yesButton" id="yes">Yes</button>
+                    <button class="noButton" id="no">No</button>
+                </div>
+            </div>
+        </div>
 
         <div class="Navyy">
             <img src="/logo.webp" alt="">
@@ -21,6 +34,8 @@
                 <h1 class="heading1">Mindfire Registration Form</h1>
             </div>
         </div>
+
+        <div id="snackbar" class="hide">Some text some message..</div>
 
         <div class="container">
                 <form class="mainForm" id="userForm" onsubmit="return validateForm(event)">
@@ -154,9 +169,9 @@
                                 <label for="selectElem">What is your branch</label>
                                 <select name="selectElem" id="brranch">
                                     <option value="CS">CS</option>
-                                    <option value="CS">IT</option>
-                                    <option value="CS">EI</option>
-                                    <option value="CS">CIVIL</option>
+                                    <option value="IT">IT</option>
+                                    <option value="EI">EI</option>
+                                    <option value="CIVIL">CIVIL</option>
                                 </select>
                             <br>
 
@@ -251,6 +266,24 @@
 
     <script>
 
+        //--------------------Notification-------------------
+        function openToast(message,character){
+            console.log("c",character);
+            const toast=document.getElementById('snackbar');
+
+            if(character=="safe"){
+                toast.style.backgroundColor="green"
+            }else if(character=="danger"){
+                toast.style.backgroundColor="red"
+            }
+            // toast.innerText="";
+            toast.classList.remove("hide");
+            setTimeout(()=>{
+                return toast.classList.add("hide");
+            },3000)
+            toast.innerText=message;
+        }
+
         // -------------------image upload-----------------
 
         const renderFile = () => {
@@ -261,6 +294,7 @@
             
             reader.addEventListener('load' , ()=> {
                 render.src = reader.result;
+                openToast("Image Uploaded Successfully","safe");
             }, false)
 
             if(file){
@@ -269,6 +303,7 @@
         }
 
         // -----------------Address-------------------
+
         const countries=[
             {
                 id:0,
@@ -527,91 +562,100 @@
 
         function validateForm(event) {
 
-        event.preventDefault();
+            event.preventDefault();
+
+            // console.log("lala",peopleArray.length);
+
+            const fileName=document.getElementById("myFile");
+            const fname = document.getElementById("first_name").value;
+            const mname = document.getElementById("middle_name").value;
+            const lname = document.getElementById("last_name").value;
 
 
-        const fileName=document.getElementById("myFile");
+            const email = document.getElementById("mail").value;
+
+            const pass = document.getElementById("password").value;
+
+            const confirmPass = document.getElementById("ConfirmpasswordClass").value;
+
+            const select=document.querySelector(".selectClass").value;
+
+            const confirmBday = document.getElementById("birthday").value;
+
+            const aboutU = document.getElementById("textArea").value;
+
+            const agree = document.getElementById("agree").checked;
 
 
-
-        const fname = document.getElementById("first_name").value;
-        const mname = document.getElementById("middle_name").value;
-        const lname = document.getElementById("last_name").value;
-
-
-        const email = document.getElementById("mail").value;
-
-        const pass = document.getElementById("password").value;
-
-        const confirmPass = document.getElementById("ConfirmpasswordClass").value;
-
-        const select=document.querySelector(".selectClass").value;
-
-        const confirmBday = document.getElementById("birthday").value;
-
-        const aboutU = document.getElementById("textArea").value;
-
-        const agree = document.getElementById("agree").checked;
-
-
-        const fileErr=document.getElementById("file-error")
-        const nameErr = document.getElementById("name-error");
-        const emailErr = document.getElementById("email-error");
-        const passErr = document.getElementById("password-error");
-        const ConfirmPassErr = document.getElementById("confirm-password-error");
-        const genError = document.getElementById("gender-error");
-        const agreeErr = document.getElementById("agree-error");
-        const bdayErr=document.getElementById("bday_error");
-        const textErr=document.getElementById("text_error");
+            const fileErr=document.getElementById("file-error")
+            const nameErr = document.getElementById("name-error");
+            const emailErr = document.getElementById("email-error");
+            const passErr = document.getElementById("password-error");
+            const ConfirmPassErr = document.getElementById("confirm-password-error");
+            const genError = document.getElementById("gender-error");
+            const agreeErr = document.getElementById("agree-error");
+            const bdayErr=document.getElementById("bday_error");
+            const textErr=document.getElementById("text_error");
 
 
 
-        fileErr.textContent="";
-        nameErr.textContent = "";
-        emailErr.textContent = "";
-        passErr.textContent = "";
-        ConfirmPassErr.textContent="";
-        genError.textContent="";
-        agreeErr.textContent = "";
-        bdayErr.textContent="";
-        textErr.textContent="";
+            fileErr.textContent="";
+            nameErr.textContent = "";
+            emailErr.textContent = "";
+            passErr.textContent = "";
+            ConfirmPassErr.textContent="";
+            genError.textContent="";
+            agreeErr.textContent = "";
+            bdayErr.textContent="";
+            textErr.textContent="";
 
+            if(fileName.files.length===0){
+                fileErr.textContent = "You Should Upload a file";
+            }
+            if ((fname=="" && mname=="" && lname=="") || /\d/.test(name)) {
+                nameErr.textContent = "Name Can not be Empty";
+            }
 
-        if(fileName.files.length===0){
-            fileErr.textContent = "You Should Upload a file";
+            if (email === "" || !email.includes("@") || !email.includes(".")) {
+                emailErr.textContent = "Please enter a valid email address.";
+            }
+
+            if (pass === "" || pass.length < 6) {
+                passErr.textContent = "Please enter a password with at least 6 characters.";
+            }
+
+            if (confirmPass === "" || confirmPass.length < 6 || confirmPass!=pass) {
+                ConfirmPassErr.textContent = "Confirmed Password is wrong";
+            }
+
+            if (male.checked==false && female.checked==false && trans.checked==false) {
+                genError.textContent = "Choose one gender";
+            }
+
+            if(confirmBday==""){
+                bdayErr.textContent="Enter Your Birthday";
+            }
+
+            if(aboutU==""){
+                textErr.textContent="About Section Can not be empty";
+            }
+
+            if (!agree) {
+                agreeErr.textContent = "Please agree to the above information.";
+            }
+
+            setTimeout(()=>{
+                fileErr.textContent =null;
+                nameErr.textContent =null;
+                emailErr.textContent =null;
+                passErr.textContent =null;
+                ConfirmPassErr.textContent =null;
+                genError.textContent =null;
+                bdayErr.textContent=null;
+                textErr.textContent=null;
+                agreeErr.textContent =null;
+            },3000);
         }
-        if ((fname=="" && mname=="" && lname=="") || /\d/.test(name)) {
-            nameErr.textContent = "Name Can not be Empty";
-        }
-
-        if (email === "" || !email.includes("@") || !email.includes(".")) {
-            emailErr.textContent = "Please enter a valid email address.";
-        }
-
-        if (pass === "" || pass.length < 6) {
-            passErr.textContent = "Please enter a password with at least 6 characters.";
-        }
-
-        if (confirmPass === "" || confirmPass.length < 6 || confirmPass!=pass) {
-            ConfirmPassErr.textContent = "Confirmed Password is wrong";
-        }
-
-        if (male.checked==false && female.checked==false && trans.checked==false) {
-            genError.textContent = "Choose one gender";
-        }
-
-        if(confirmBday==""){
-            bdayErr.textContent="Enter Your Birthday";
-        }
-
-        if(aboutU==""){
-            textErr.textContent="About Section Can not be empty";
-        }
-
-        if (!agree) {
-            agreeErr.textContent = "Please agree to the above information.";
-        }
-    }
 
 
 
@@ -652,96 +696,117 @@
     var submit=true;
 
     form.addEventListener('submit',(event)=>{
-        if(submit){
-            idz+=1;
 
-            event.preventDefault();
+        const fname = document.getElementById("first_name").value;
+        const branch = document.getElementById("brranch").value;
+        const email = document.getElementById("mail").value;
+        const confirmBday = document.getElementById("birthday").value;
+        const passw=document.getElementById("password").value;
 
-            const fname = document.getElementById("first_name").value;
-            const branch = document.getElementById("brranch").value;
-            const email = document.getElementById("mail").value;
-            const confirmBday = document.getElementById("birthday").value;
+        let tempEmail=peopleArray.find((people)=>{
+            return people.email==email;
+        })
 
-            const tempObj={
-                id:idz,
-                name:fname,
-                branch:branch,
-                email:email,
-                birthday:confirmBday
+        if(tempEmail){
+            openToast("Email Already Exist","danger")
+        }else if(fname && branch && email && confirmBday){
+            var message="Form Created Successfully";
+
+            if(submit){
+
+                openToast(message,"safe")
+
+                idz+=1;
+
+                event.preventDefault();
+
+                const tempObj={
+                    id:idz,
+                    name:fname,
+                    branch:branch,
+                    email:email,
+                    birthday:confirmBday,
+                    password:passw
+                }
+
+                peopleArray.push(tempObj);
+
+                // console.log(peopleArray);
+
+                tr[idz] = document.createElement('tr');  
+                
+                var curRow=tr[idz];
+
+                var td1 = document.createElement('td');
+                var td2 = document.createElement('td');
+                var td3 = document.createElement('td');
+                var td4 = document.createElement('td');
+                var td5 = document.createElement('td');
+
+
+                var text1 = document.createTextNode(fname);
+                var text2 = document.createTextNode(email);
+                var text3 = document.createTextNode(confirmBday);
+                var text4 = document.createTextNode(branch);
+                
+
+                var editButton=document.createElement('button');
+                editButton.classList.add('button');
+                editButton.innerText='Edit';
+                editButton.addEventListener('click',()=>editRow(curRow,idz));
+
+                var deleteButton=document.createElement('button');
+                deleteButton.classList.add('button','delete');
+                deleteButton.innerText='Delete';
+                deleteButton.addEventListener('click',()=>deleteRow(curRow));
+
+
+                for (var i = 0; i < 4; i++){
+                    td1.appendChild(text1);
+                    td2.appendChild(text2);
+                    td3.appendChild(text3);
+                    td4.appendChild(text4);
+                    td5.appendChild(editButton);
+                    td5.appendChild(deleteButton);
+
+                    tr[idz].appendChild(td1);
+                    tr[idz].appendChild(td2);   
+                    tr[idz].appendChild(td3);
+                    tr[idz].appendChild(td4); 
+                    tr[idz].appendChild(td5);
+                } 
+
+                table.appendChild(tr[idz]);
+            }else{
+
+                // console.log(tr[toEdit].cells[0].innerText+" "+tr[toEdit].cells[1].innerText);
+                let currObj=peopleArray[toEdit];
+
+                // console.log("Haha",peopleArray[toEdit]);
+
+                const fname = document.getElementById("first_name").value;
+                const branch = document.getElementById("brranch").value;
+                const email = document.getElementById("mail").value;
+                const confirmBday = document.getElementById("birthday").value;
+
+
+                tr[toEdit].cells[0].innerText=fname;
+                tr[toEdit].cells[1].innerText=email;
+                tr[toEdit].cells[2].innerText=confirmBday;
+                tr[toEdit].cells[3].innerText=branch;
+            
+
+                document.getElementById('submitButton').innerText = 'Submit';
+
+
+                submit=true;
+
+                openToast("Form Edited Successfully","safe")
             }
-
-            peopleArray.push(tempObj);
-
-            // console.log(peopleArray);
-
-            tr[idz] = document.createElement('tr');  
-            
-            var curRow=tr[idz];
-
-            var td1 = document.createElement('td');
-            var td2 = document.createElement('td');
-            var td3 = document.createElement('td');
-            var td4 = document.createElement('td');
-            var td5 = document.createElement('td');
-
-
-            var text1 = document.createTextNode(fname);
-            var text2 = document.createTextNode(email);
-            var text3 = document.createTextNode(confirmBday);
-            var text4 = document.createTextNode(branch);
-            
-
-            var editButton=document.createElement('button');
-            editButton.classList.add('button');
-            editButton.innerText='Edit';
-            editButton.addEventListener('click',()=>editRow(curRow,idz));
-
-            var deleteButton=document.createElement('button');
-            deleteButton.classList.add('button','delete');
-            deleteButton.innerText='Delete';
-            deleteButton.addEventListener('click',()=>deleteRow(curRow));
-
-
-            for (var i = 0; i < 4; i++){
-                td1.appendChild(text1);
-                td2.appendChild(text2);
-                td3.appendChild(text3);
-                td4.appendChild(text4);
-                td5.appendChild(editButton);
-                td5.appendChild(deleteButton);
-
-                tr[idz].appendChild(td1);
-                tr[idz].appendChild(td2);   
-                tr[idz].appendChild(td3);
-                tr[idz].appendChild(td4); 
-                tr[idz].appendChild(td5);
-            } 
-
-            table.appendChild(tr[idz]);
-        }else{
-            // console.log(tr[toEdit].cells[0].innerText+" "+tr[toEdit].cells[1].innerText);
-            let currObj=peopleArray[toEdit];
-
-            // console.log("Haha",peopleArray[toEdit]);
-
-            const fname = document.getElementById("first_name").value;
-            const branch = document.getElementById("brranch").value;
-            const email = document.getElementById("mail").value;
-            const confirmBday = document.getElementById("birthday").value;
-
-
-            tr[toEdit].cells[0].innerText=fname;
-            tr[toEdit].cells[1].innerText=email;
-            tr[toEdit].cells[2].innerText=confirmBday;
-            tr[toEdit].cells[3].innerText=branch;
-        
-
-            document.getElementById('submitButton').innerText = 'Submit';
-
-
-            submit=true;
+        }else{  
+            message="Add Required Fileds before submitting"
+            openToast(message,"danger")
         }
-
 
         form.reset();
 
@@ -757,10 +822,10 @@
             return e.email==toFindEmail;
         })
 
-        // console.log("obj",findobj);
-        // console.log("row",row.cells[1].innerText);
+        console.log("obj",findobj);
+        console.log("row",row.cells[1].innerText);
         // console.log("id",id);
-        
+
         toEdit=findobj.id;
         submit=false;
         document.getElementById('submitButton').innerText = 'Edit';
@@ -772,8 +837,45 @@
     }
 
     function deleteRow(row) {
+        openModal(row);
+        // row.remove();
+    }
 
-        row.remove();
+    function openModal(row){
+        const modal = document.getElementsByClassName("modal")[0];
+
+        modal.classList.remove("hide");
+        const yesBtn=document.getElementById('yes');
+        const noBtn=document.getElementById('no');
+
+        yesBtn.addEventListener('click',()=>{
+            const pass=document.getElementById('modalInput').value;
+
+            let toFindEmail=row.cells[1].innerText;
+
+            const findobj=peopleArray.find((e)=>{
+                return e.email==toFindEmail;
+            })
+
+            // console.log("password typed ",pass);
+            // console.log("password actual ",findobj.password);
+
+            if(pass==findobj.password){
+                row.remove();
+                modal.classList.add("hide");
+                message="Record Deleted Successfully";
+                openToast(message,"safe")
+            }else{
+                openToast("Enter The Password Correctly","danger")
+            }
+  
+        })
+
+        noBtn.addEventListener('click',()=>{
+            modal.classList.add("hide");
+        })
+
+
     }
 
 
