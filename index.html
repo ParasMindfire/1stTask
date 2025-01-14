@@ -7,6 +7,7 @@
     <title>Mindfire Registration</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -264,24 +265,38 @@
 
 
 
+
+
+     
+
+
+
+
+
+
+
     <script>
+
+$(document).ready(function(){
+  console.log("hiiii Jquery")
+});
 
         //--------------------Notification-------------------
         function openToast(message,character){
-            console.log("c",character);
-            const toast=document.getElementById('snackbar');
+            // console.log("c",character);
+            const toast=$('#snackbar');
 
             if(character=="safe"){
-                toast.style.backgroundColor="green"
+                toast.css("background-color","green")
             }else if(character=="danger"){
-                toast.style.backgroundColor="red"
+                toast.css("background-color","red")
             }
-            // toast.innerText="";
-            toast.classList.remove("hide");
+            toast.text("");
+            toast.removeClass("hide");
             setTimeout(()=>{
-                return toast.classList.add("hide");
+                return toast.addClass("hide");
             },3000)
-            toast.innerText=message;
+            toast.text(message);
         }
 
         // -------------------image upload-----------------
@@ -461,38 +476,32 @@
             } 
         ]
 
-
-        const countryList=document.getElementById('CountryList');
+        
+        const countryList=$("#CountryList")
 
         for(let i=0;i<countries.length;i++){
-            var option = document.createElement("option");
-            option.text = countries[i].country;
-            countryList.add(option);
+            var option = $("<option></option>").text(countries[i].country);
+            countryList.append(option);
         }
 
         var globalCountryVariable;
 
-
         function checkCountry(){
 
-            //clearing all the options
-            const statesToDisplay=document.getElementById('StateList').innerHTML=null;
+            const statesToDisplay=$("#StateList").html(null);
 
-            const citiesToDisplay=document.getElementById('cityList').innerHTML=null;
+            const citiesToDisplay=$("#cityList").html(null)
 
 
-            let stateText=document.getElementById('StateList');
-            var optionn = document.createElement("option");
-            optionn.text = "Select A State";
-            stateText.add(optionn);
+            let stateText=$("#StateList");
+            var optionn=$("<option></option>").text("Select A State")
+            stateText.append(optionn);
 
-            let cityText=document.getElementById('cityList');
-            var option = document.createElement("option");
-            option.text = "Select a city";
-            cityText.add(option);
+            let cityText=$("#cityList");
+            var option=$("<option></option>").text("Select A City")
+            cityText.append(option);
 
-            
-            const countrySelected=document.getElementById('CountryList').value;
+            const countrySelected=$("#CountryList").val();
 
             const filteredCountry=countries.find((c)=>{
                 return c.country==countrySelected;
@@ -501,14 +510,10 @@
             let states=filteredCountry.states;
             globalCountryVariable=filteredCountry.id;
 
-            // console.log("id",globalCountryVariable);
-
             for(let i=0;i<states.length;i++){
-                const statesToDisplay=document.getElementById('StateList');
-                
-                var option = document.createElement("option");
-                option.text = states[i].state;
-                statesToDisplay.add(option);
+                const statesToDisplay=$("#StateList")
+                var option=$("<option></option>").text(states[i].state)
+                statesToDisplay.append(option);
             }
         }
 
@@ -517,30 +522,25 @@
 
         function checkState(){
             //clearing all the options
-            const citiesToDisplay=document.getElementById('cityList').innerHTML=null;
+            const citiesToDisplay=$("#cityList").html(null);
 
-            let cityText=document.getElementById('cityList');
-            var option = document.createElement("option");
-            option.text = "Select a city";
-            cityText.add(option);
+            let cityText=$("#cityList");
+            var option=$("<option></option>").text("Select a city");
+            cityText.append(option);
 
 
-            const stateSelected=document.getElementById('StateList').value;
+            const stateSelected=$('#StateList').val();
 
             const filteredState=countries[globalCountryVariable].states.find((e)=>{
                 return e.state==stateSelected;
             })
 
-            // console.log("filteredState->",filteredState);
-
             let citiezz=filteredState.cities;
 
             for(let i=0;i<citiezz.length;i++){
-                const cityToDisplay=document.getElementById('cityList');
-                
-                var option = document.createElement("option");
-                option.text = citiezz[i].city;
-                cityToDisplay.add(option);
+                const cityToDisplay=$('#cityList');
+                var option=$('<option></option>').text(citiezz[i].city)
+                cityToDisplay.append(option);
             }
         }
         
@@ -549,11 +549,6 @@
 
 
     
-
-
-
-
-
 
 
 
