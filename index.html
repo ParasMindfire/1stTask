@@ -278,7 +278,7 @@
     <script>
 
 $(document).ready(function(){
-  console.log("hiiii Jquery")
+//   console.log("hiiii Jquery")
 });
 
         //--------------------Notification-------------------
@@ -561,94 +561,77 @@ $(document).ready(function(){
 
             // console.log("lala",peopleArray.length);
 
-            const fileName=document.getElementById("myFile");
-            const fname = document.getElementById("first_name").value;
-            const mname = document.getElementById("middle_name").value;
-            const lname = document.getElementById("last_name").value;
+            const fileName=$("#myFile");
+            const fname = $("#first_name").val();
+            const mname = $("#middle_name").val();
+            const lname = $("#last_name").val();  
+            const email = $("#mail").val();
+            const pass = $("#password").val();
+            const confirmPass = $("#ConfirmpasswordClass").val();
+            const select=$(".selectClass").val();
+            const confirmBday = $("#birthday").val();
+            const aboutU = $("#textArea").val();
+            const agree = $("#agree").is(':checked');
 
 
-            const email = document.getElementById("mail").value;
-
-            const pass = document.getElementById("password").value;
-
-            const confirmPass = document.getElementById("ConfirmpasswordClass").value;
-
-            const select=document.querySelector(".selectClass").value;
-
-            const confirmBday = document.getElementById("birthday").value;
-
-            const aboutU = document.getElementById("textArea").value;
-
-            const agree = document.getElementById("agree").checked;
+            const fileErr=$("#file-error").text("")
+            const nameErr = $("#name-error").text("");
+            const emailErr = $("#email-error").text("");
+            const passErr = $("#password-error").text("");
+            const ConfirmPassErr = $("#confirm-password-error").text("");
+            const genError = $("#gender-error").text("");
+            const agreeErr =$("#agree-error").text("");
+            const bdayErr=$("#bday_error").text("");
+            const textErr=$("t#ext_error").text("");
 
 
-            const fileErr=document.getElementById("file-error")
-            const nameErr = document.getElementById("name-error");
-            const emailErr = document.getElementById("email-error");
-            const passErr = document.getElementById("password-error");
-            const ConfirmPassErr = document.getElementById("confirm-password-error");
-            const genError = document.getElementById("gender-error");
-            const agreeErr = document.getElementById("agree-error");
-            const bdayErr=document.getElementById("bday_error");
-            const textErr=document.getElementById("text_error");
-
-
-
-            fileErr.textContent="";
-            nameErr.textContent = "";
-            emailErr.textContent = "";
-            passErr.textContent = "";
-            ConfirmPassErr.textContent="";
-            genError.textContent="";
-            agreeErr.textContent = "";
-            bdayErr.textContent="";
-            textErr.textContent="";
-
-            if(fileName.files.length===0){
-                fileErr.textContent = "You Should Upload a file";
+            // console.log("lennn ",fileName[0].files);
+            if(fileName[0].files.length==0){
+                fileErr.text("You Should Upload a file");
             }
+
             if ((fname=="" && mname=="" && lname=="") || /\d/.test(name)) {
-                nameErr.textContent = "Name Can not be Empty";
+                nameErr.text("Name Can not be Empty");
             }
 
             if (email === "" || !email.includes("@") || !email.includes(".")) {
-                emailErr.textContent = "Please enter a valid email address.";
+                emailErr.text("Please enter a valid email address.");
             }
 
             if (pass === "" || pass.length < 6) {
-                passErr.textContent = "Please enter a password with at least 6 characters.";
+                passErr.text("Please enter a password with at least 6 characters.");
             }
 
             if (confirmPass === "" || confirmPass.length < 6 || confirmPass!=pass) {
-                ConfirmPassErr.textContent = "Confirmed Password is wrong";
+                ConfirmPassErr.text("Confirmed Password is wrong");
             }
 
             if (male.checked==false && female.checked==false && trans.checked==false) {
-                genError.textContent = "Choose one gender";
+                genError.text("Choose one gender");
             }
 
             if(confirmBday==""){
-                bdayErr.textContent="Enter Your Birthday";
+                bdayErr.text("Enter Your Birthday");
             }
 
             if(aboutU==""){
-                textErr.textContent="About Section Can not be empty";
+                textErr.text("About Section Can not be empty");
             }
 
             if (!agree) {
-                agreeErr.textContent = "Please agree to the above information.";
+                agreeErr.text("Please agree to the above information.");
             }
 
             setTimeout(()=>{
-                fileErr.textContent =null;
-                nameErr.textContent =null;
-                emailErr.textContent =null;
-                passErr.textContent =null;
-                ConfirmPassErr.textContent =null;
-                genError.textContent =null;
-                bdayErr.textContent=null;
-                textErr.textContent=null;
-                agreeErr.textContent =null;
+                fileErr.text(null);
+                nameErr.text(null);
+                emailErr.text(null);
+                passErr.text(null);
+                ConfirmPassErr.text(null);
+                genError.text(null);
+                bdayErr.text(null);
+                textErr.text(null);
+                agreeErr.text(null);
             },3000);
         }
 
@@ -658,17 +641,16 @@ $(document).ready(function(){
 
     function myEmail() {
 
-        const email = document.getElementById("mail").value;
-        const emailErr = document.getElementById("email-error");
+        const email = $("#mail").val();
+        const emailErr = $("#email-error");
 
-        emailErr.textContent = "";
+        emailErr.text("");
 
         if (email === "" || !email.includes("@") || !email.includes(".")) {
-            emailErr.textContent = "Please include @";
+            emailErr.text("Please include @");
         }
+
     }
-
-
 
 
 
@@ -677,8 +659,12 @@ $(document).ready(function(){
 
     // ---------------------------tABLE---------------------
 
-    const form=document.getElementById('userForm');
-    const table=document.getElementById('peopleTable').querySelector('tbody');
+    // const form=document.getElementById('userForm');
+    // const table=document.getElementById('peopleTable').querySelector('tbody');
+
+    const form=$('#userForm');
+    const tablez=$('#peopleTable');
+    const table=tablez.find('tbody')
 
     const peopleArray=[];
 
@@ -690,13 +676,21 @@ $(document).ready(function(){
 
     var submit=true;
 
-    form.addEventListener('submit',(event)=>{
+    form.submit((event)=>{
 
-        const fname = document.getElementById("first_name").value;
-        const branch = document.getElementById("brranch").value;
-        const email = document.getElementById("mail").value;
-        const confirmBday = document.getElementById("birthday").value;
-        const passw=document.getElementById("password").value;
+        event.preventDefault();
+
+        // const fname = document.getElementById("first_name").value;
+        // const branch = document.getElementById("brranch").value;
+        // const email = document.getElementById("mail").value;
+        // const confirmBday = document.getElementById("birthday").value;
+        // const passw=document.getElementById("password").value;
+
+        const fname = $("#first_name").val();
+        const branch = $("#brranch").val();
+        const email = $("#mail").val();
+        const confirmBday = $("#birthday").val();
+        const passw=$("#password").val();
 
         let tempEmail=peopleArray.find((people)=>{
             return people.email==email;
@@ -728,50 +722,62 @@ $(document).ready(function(){
 
                 // console.log(peopleArray);
 
-                tr[idz] = document.createElement('tr');  
+                // tr[idz] = document.createElement('tr');  
+                tr[idz]=$("<tr></tr>")
                 
                 var curRow=tr[idz];
 
-                var td1 = document.createElement('td');
-                var td2 = document.createElement('td');
-                var td3 = document.createElement('td');
-                var td4 = document.createElement('td');
-                var td5 = document.createElement('td');
+                // var td1 = document.createElement('td');
+                // var td2 = document.createElement('td');
+                // var td3 = document.createElement('td');
+                // var td4 = document.createElement('td');
+                // var td5 = document.createElement('td');
+
+                var td1 = $("<td></td>")
+                var td2 = $("<td></td>");
+                var td3 = $("<td></td>");
+                var td4 = $("<td></td>");
+                var td5 = $("<td></td>");
 
 
+                //There is no jQuery for createTextNode we have to use document ~ stackoverflow
                 var text1 = document.createTextNode(fname);
                 var text2 = document.createTextNode(email);
                 var text3 = document.createTextNode(confirmBday);
                 var text4 = document.createTextNode(branch);
                 
 
-                var editButton=document.createElement('button');
-                editButton.classList.add('button');
-                editButton.innerText='Edit';
-                editButton.addEventListener('click',()=>editRow(curRow,idz));
+                // var editButton=document.createElement('button');
+                // editButton.classList.add('button');
+                // editButton.innerText='Edit';
+                // editButton.addEventListener('click',()=>editRow(curRow,idz));
 
-                var deleteButton=document.createElement('button');
-                deleteButton.classList.add('button','delete');
-                deleteButton.innerText='Delete';
-                deleteButton.addEventListener('click',()=>deleteRow(curRow));
+                var editButton=$('<button></button>').addClass('button').text("Edit").click(()=>editRow(curRow,idz));
+
+                // var deleteButton=document.createElement('button');
+                // deleteButton.classList.add('button','delete');
+                // deleteButton.innerText='Delete';
+                // deleteButton.addEventListener('click',()=>deleteRow(curRow));
+
+                var deleteButton=$('<button></button>').addClass('button').addClass('delete').text("Delete").click(()=>deleteRow(curRow));
 
 
                 for (var i = 0; i < 4; i++){
-                    td1.appendChild(text1);
-                    td2.appendChild(text2);
-                    td3.appendChild(text3);
-                    td4.appendChild(text4);
-                    td5.appendChild(editButton);
-                    td5.appendChild(deleteButton);
+                    td1.append(text1);
+                    td2.append(text2);
+                    td3.append(text3);
+                    td4.append(text4);
+                    td5.append(editButton);
+                    td5.append(deleteButton);
 
-                    tr[idz].appendChild(td1);
-                    tr[idz].appendChild(td2);   
-                    tr[idz].appendChild(td3);
-                    tr[idz].appendChild(td4); 
-                    tr[idz].appendChild(td5);
+                    tr[idz].append(td1);
+                    tr[idz].append(td2);   
+                    tr[idz].append(td3);
+                    tr[idz].append(td4); 
+                    tr[idz].append(td5);
                 } 
 
-                table.appendChild(tr[idz]);
+                table.append(tr[idz]);
             }else{
 
                 // console.log(tr[toEdit].cells[0].innerText+" "+tr[toEdit].cells[1].innerText);
@@ -779,20 +785,32 @@ $(document).ready(function(){
 
                 // console.log("Haha",peopleArray[toEdit]);
 
-                const fname = document.getElementById("first_name").value;
-                const branch = document.getElementById("brranch").value;
-                const email = document.getElementById("mail").value;
-                const confirmBday = document.getElementById("birthday").value;
+                // const fname = document.getElementById("first_name").value;
+                // const branch = document.getElementById("brranch").value;
+                // const email = document.getElementById("mail").value;
+                // const confirmBday = document.getElementById("birthday").value;
+
+                const fname = $("f#irst_name").val();
+                const branch = $("#brranch").val();
+                const email = $("#mail").val();
+                const confirmBday =$("#birthday").val();
 
 
-                tr[toEdit].cells[0].innerText=fname;
-                tr[toEdit].cells[1].innerText=email;
-                tr[toEdit].cells[2].innerText=confirmBday;
-                tr[toEdit].cells[3].innerText=branch;
+                // tr[toEdit].cells[0].innerText=fname;
+                // tr[toEdit].cells[1].innerText=email;
+                // tr[toEdit].cells[2].innerText=confirmBday;
+                // tr[toEdit].cells[3].innerText=branch;
+
+                console.log("howw",tr[toEdit]);
+
+                // tr[toEdit][0].cells[0].text(fname);
+                // tr[toEdit][0].cells[1].text(email);
+                // tr[toEdit][0].cells[2].text(confirmBday);
+                // tr[toEdit][0].cells[3].text(branch);
             
 
                 document.getElementById('submitButton').innerText = 'Submit';
-
+                $('#submitButton').text('Submit');
 
                 submit=true;
 
@@ -803,31 +821,31 @@ $(document).ready(function(){
             openToast(message,"danger")
         }
 
-        form.reset();
+        form.trigger("reset");
 
     })
 
 
 
     function editRow(row,id) {
-
-        let toFindEmail=row.cells[1].innerText;
+        console.log("row",row[0])
+        let toFindEmail=row[0].cells[1].innerText;
 
         const findobj=peopleArray.find((e)=>{
             return e.email==toFindEmail;
         })
 
-        console.log("obj",findobj);
-        console.log("row",row.cells[1].innerText);
+        // console.log("obj",findobj);
+        // console.log("row",row[0].cells[1].innerText);
         // console.log("id",id);
 
         toEdit=findobj.id;
         submit=false;
         document.getElementById('submitButton').innerText = 'Edit';
-        document.getElementById('first_name').value = row.cells[0].innerText;
-        document.getElementById('mail').value = row.cells[1].innerText;
-        document.getElementById('birthday').value = row.cells[2].innerText;
-        document.getElementById('brranch').value = row.cells[3].innerText;
+        document.getElementById('first_name').value = row[0].cells[0].innerText;
+        document.getElementById('mail').value = row[0].cells[1].innerText;
+        document.getElementById('birthday').value = row[0].cells[2].innerText;
+        document.getElementById('brranch').value = row[0].cells[3].innerText;
         
     }
 
