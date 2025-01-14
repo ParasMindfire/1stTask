@@ -857,13 +857,15 @@
                 return e.email==toFindEmail;
             })
 
-            // console.log("password typed ",pass);
-            // console.log("password actual ",findobj.password);
+            console.log("password typed ",pass);
+            console.log("password actual ",findobj.password);
 
             if(pass==findobj.password){
                 row.remove();
                 modal.classList.add("hide");
                 message="Record Deleted Successfully";
+                const toDel=peopleArray.find((people)=>people.email==toFindEmail);
+                peopleArray[toDel.id]={};
                 openToast(message,"safe")
             }else{
                 openToast("Enter The Password Correctly","danger")
