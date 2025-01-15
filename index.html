@@ -73,7 +73,7 @@
 
                                 <br>
                                 <!-- error message -->
-                                <span id="name-error" class="error-message"></span>
+                                <span id="fname-error" class="error-message"></span>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
 
                                     <br>
                                     <!-- error message -->
-                                    <span id="password-error" class="error-message"></span>
+                                    <span id="pass-error" class="error-message"></span>
 
                                 <!-- </div> -->
 
@@ -177,7 +177,7 @@
                             <br>
 
                             <!-- error message -->
-                            <span id="select_error" class="error-message "></span>
+                            <span id="select-error" class="error-message "></span>
                             </div>
                         </div>
 
@@ -185,12 +185,12 @@
                         <div class="commonDiv">
                             <div class="bday">
                                 <label for="birthday">Birthday:*</label>
-                                <input type="date" id="birthday" name="birthday">
+                                <input id="birthday" type="date" name="birthday">
 
                                 <br>
 
                                 <!-- error message -->
-                            <span id="bday_error" class="error-message "></span>
+                            <span id="confirmBday-error" class="error-message "></span>
 
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                                 </div>
 
                                 <!-- error message -->
-                                <span id="text_error" class="error-message "></span>
+                                <span id="aboutU-error" class="error-message "></span>
                             </div>
                         </div>
                     
@@ -559,80 +559,82 @@ $(document).ready(function(){
 
             event.preventDefault();
 
-            // console.log("lala",peopleArray.length);
-
-            const fileName=$("#myFile");
-            const fname = $("#first_name").val();
-            const mname = $("#middle_name").val();
-            const lname = $("#last_name").val();  
-            const email = $("#mail").val();
-            const pass = $("#password").val();
-            const confirmPass = $("#ConfirmpasswordClass").val();
-            const select=$(".selectClass").val();
-            const confirmBday = $("#birthday").val();
-            const aboutU = $("#textArea").val();
-            const agree = $("#agree").is(':checked');
-
-
-            const fileErr=$("#file-error").text("")
-            const nameErr = $("#name-error").text("");
-            const emailErr = $("#email-error").text("");
-            const passErr = $("#password-error").text("");
-            const ConfirmPassErr = $("#confirm-password-error").text("");
-            const genError = $("#gender-error").text("");
-            const agreeErr =$("#agree-error").text("");
-            const bdayErr=$("#bday_error").text("");
-            const textErr=$("t#ext_error").text("");
-
-
-            // console.log("lennn ",fileName[0].files);
-            if(fileName[0].files.length==0){
-                fileErr.text("You Should Upload a file");
+            function validateForm(key,val){
+                if(val && validation[key].test(val))return true;
+                return false;
             }
 
-            if ((fname=="" && mname=="" && lname=="") || /\d/.test(name)) {
-                nameErr.text("Name Can not be Empty");
+            const formValues={
+                // fileName: $("#myFile"),
+                fname : {
+                    value:$("#first_name").val(),
+                    message:"first name should not be empty",
+                },
+                mname :{
+                    value:$("#middle_name").val(),
+                    message:"",
+                },
+                lname :{
+                    value:$("#last_name").val(), 
+                    message:"",
+
+                },
+                email:{
+                    value:$("#mail").val(),
+                    message:"Enter the correct email id",
+                },
+                pass :{
+                    value:$("#password").val(),
+                    message:"Password format is not correct",
+                },
+                // confirmPass : $("#ConfirmpasswordClass").val(),
+                select:{
+                    value:$(".selectClass").val(),
+                    message:"Select You Branch",
+                },
+                confirmBday : {
+                    value:$("#birthday").val(),
+                    message:"Birthday field can not be empty",
+                },
+                aboutU : {
+                    value:$("#textArea").val(),
+                    message:"About you is not filled",
+                }
+                // agree : $("#agree").is(':checked'),
             }
 
-            if (email === "" || !email.includes("@") || !email.includes(".")) {
-                emailErr.text("Please enter a valid email address.");
+            var validation = {
+                fname: /^.+$/,
+                mname: /^.+$/,
+                lname: /^.+$/,
+                email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                pass: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                country: /^.+$/,
+                city: /^.+$/,
+                area: /^.+$/,
+                university: /^.+$/,
+                qualification: /^.+$/,
+                aboutU: /^.+$/,
+                confirmBday: /^\d+$/,
+                select: /^.+$/,
+                date: /^.+$/,
             }
 
-            if (pass === "" || pass.length < 6) {
-                passErr.text("Please enter a password with at least 6 characters.");
-            }
 
-            if (confirmPass === "" || confirmPass.length < 6 || confirmPass!=pass) {
-                ConfirmPassErr.text("Confirmed Password is wrong");
-            }
+            $.each(formValues,function(key,val){
+                // console.log("valezz ",val);
+                var isValid=validateForm(key,val.value);
+                console.log("validity",isValid);
+                if(isValid==false){
+                    var targetIds="#"+String(key)+"-error";
+                    $(targetIds).text(`${val.message}`)
+                    setTimeout(()=>{
+                        return $(targetIds).text("");
+                    },3000);
+                    // console.log("Tids ",targetIds);
+                }
+            })
 
-            if (male.checked==false && female.checked==false && trans.checked==false) {
-                genError.text("Choose one gender");
-            }
-
-            if(confirmBday==""){
-                bdayErr.text("Enter Your Birthday");
-            }
-
-            if(aboutU==""){
-                textErr.text("About Section Can not be empty");
-            }
-
-            if (!agree) {
-                agreeErr.text("Please agree to the above information.");
-            }
-
-            setTimeout(()=>{
-                fileErr.text(null);
-                nameErr.text(null);
-                emailErr.text(null);
-                passErr.text(null);
-                ConfirmPassErr.text(null);
-                genError.text(null);
-                bdayErr.text(null);
-                textErr.text(null);
-                agreeErr.text(null);
-            },3000);
         }
 
 
@@ -659,9 +661,6 @@ $(document).ready(function(){
 
     // ---------------------------tABLE---------------------
 
-    // const form=document.getElementById('userForm');
-    // const table=document.getElementById('peopleTable').querySelector('tbody');
-
     const form=$('#userForm');
     const tablez=$('#peopleTable');
     const table=tablez.find('tbody')
@@ -680,17 +679,13 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        // const fname = document.getElementById("first_name").value;
-        // const branch = document.getElementById("brranch").value;
-        // const email = document.getElementById("mail").value;
-        // const confirmBday = document.getElementById("birthday").value;
-        // const passw=document.getElementById("password").value;
-
         const fname = $("#first_name").val();
         const branch = $("#brranch").val();
         const email = $("#mail").val();
         const confirmBday = $("#birthday").val();
         const passw=$("#password").val();
+
+        console.log("fname ",fname," branch ",branch," email ",email," confirmBday ",confirmBday);
 
         let tempEmail=peopleArray.find((people)=>{
             return people.email==email;
@@ -722,16 +717,10 @@ $(document).ready(function(){
 
                 // console.log(peopleArray);
 
-                // tr[idz] = document.createElement('tr');  
                 tr[idz]=$("<tr></tr>")
                 
-                var curRow=tr[idz];
+                var curRow=tr[idz][0];
 
-                // var td1 = document.createElement('td');
-                // var td2 = document.createElement('td');
-                // var td3 = document.createElement('td');
-                // var td4 = document.createElement('td');
-                // var td5 = document.createElement('td');
 
                 var td1 = $("<td></td>")
                 var td2 = $("<td></td>");
@@ -745,19 +734,9 @@ $(document).ready(function(){
                 var text2 = document.createTextNode(email);
                 var text3 = document.createTextNode(confirmBday);
                 var text4 = document.createTextNode(branch);
-                
-
-                // var editButton=document.createElement('button');
-                // editButton.classList.add('button');
-                // editButton.innerText='Edit';
-                // editButton.addEventListener('click',()=>editRow(curRow,idz));
-
+               
                 var editButton=$('<button></button>').addClass('button').text("Edit").click(()=>editRow(curRow,idz));
 
-                // var deleteButton=document.createElement('button');
-                // deleteButton.classList.add('button','delete');
-                // deleteButton.innerText='Delete';
-                // deleteButton.addEventListener('click',()=>deleteRow(curRow));
 
                 var deleteButton=$('<button></button>').addClass('button').addClass('delete').text("Delete").click(()=>deleteRow(curRow));
 
@@ -785,31 +764,18 @@ $(document).ready(function(){
 
                 // console.log("Haha",peopleArray[toEdit]);
 
-                // const fname = document.getElementById("first_name").value;
-                // const branch = document.getElementById("brranch").value;
-                // const email = document.getElementById("mail").value;
-                // const confirmBday = document.getElementById("birthday").value;
-
-                const fname = $("f#irst_name").val();
+                const fname = $("#first_name").val();
                 const branch = $("#brranch").val();
                 const email = $("#mail").val();
                 const confirmBday =$("#birthday").val();
 
+                // console.log("howw",tr[toEdit][0].cells[0]);
 
-                // tr[toEdit].cells[0].innerText=fname;
-                // tr[toEdit].cells[1].innerText=email;
-                // tr[toEdit].cells[2].innerText=confirmBday;
-                // tr[toEdit].cells[3].innerText=branch;
+                $(tr[toEdit][0].cells[0]).text(fname);
+                $(tr[toEdit][0].cells[1]).text(email);
+                $(tr[toEdit][0].cells[2]).text(confirmBday);
+                $(tr[toEdit][0].cells[3]).text(branch);
 
-                console.log("howw",tr[toEdit]);
-
-                // tr[toEdit][0].cells[0].text(fname);
-                // tr[toEdit][0].cells[1].text(email);
-                // tr[toEdit][0].cells[2].text(confirmBday);
-                // tr[toEdit][0].cells[3].text(branch);
-            
-
-                document.getElementById('submitButton').innerText = 'Submit';
                 $('#submitButton').text('Submit');
 
                 submit=true;
@@ -828,56 +794,58 @@ $(document).ready(function(){
 
 
     function editRow(row,id) {
-        console.log("row",row[0])
-        let toFindEmail=row[0].cells[1].innerText;
+        console.log("row",row)
+        let toFindEmail=row.cells[1].innerText;
 
         const findobj=peopleArray.find((e)=>{
             return e.email==toFindEmail;
         })
-
-        // console.log("obj",findobj);
-        // console.log("row",row[0].cells[1].innerText);
-        // console.log("id",id);
-
+        
         toEdit=findobj.id;
         submit=false;
-        document.getElementById('submitButton').innerText = 'Edit';
-        document.getElementById('first_name').value = row[0].cells[0].innerText;
-        document.getElementById('mail').value = row[0].cells[1].innerText;
-        document.getElementById('birthday').value = row[0].cells[2].innerText;
-        document.getElementById('brranch').value = row[0].cells[3].innerText;
+        $('#submitButton').text('Edit');
+        $('#first_name').val($(row.cells[0]).text());
+        $('#mail').val($(row.cells[1]).text());
+        $('#birthday').val($(row.cells[2]).text());
+        $('#brranch').val($(row.cells[3]).text());
         
     }
 
     function deleteRow(row) {
         openModal(row);
-        // row.remove();
     }
 
     function openModal(row){
-        const modal = document.getElementsByClassName("modal")[0];
+        const modal =$(".modal");
 
-        modal.classList.remove("hide");
-        const yesBtn=document.getElementById('yes');
-        const noBtn=document.getElementById('no');
+        modal.removeClass("hide");
 
-        yesBtn.addEventListener('click',()=>{
-            const pass=document.getElementById('modalInput').value;
+        const yesBtn=$('#yes');
+        const noBtn=$('#no');
 
-            let toFindEmail=row.cells[1].innerText;
+        $('#modalInput').text(null);
+
+        yesBtn.click(()=>{
+            const pass=$('#modalInput').val();
+
+            let toFindEmail=$(row.cells[1]).text();
+
+            // console.log("Email Finder",toFindEmail)
 
             const findobj=peopleArray.find((e)=>{
                 return e.email==toFindEmail;
             })
 
-            console.log("password typed ",pass);
-            console.log("password actual ",findobj.password);
+            // console.log("object Finder",findobj)
+
+            // console.log("password typed ",pass);
+            // console.log("password actual ",findobj.password);
 
             if(pass==findobj.password){
                 row.remove();
-                modal.classList.add("hide");
+                modal.addClass("hide");
                 message="Record Deleted Successfully";
-                const toDel=peopleArray.find((people)=>people.email==toFindEmail);
+                const toDel=peopleArray.find((people)=>people.          email==toFindEmail);
                 peopleArray[toDel.id]={};
                 openToast(message,"safe")
             }else{
@@ -886,8 +854,8 @@ $(document).ready(function(){
   
         })
 
-        noBtn.addEventListener('click',()=>{
-            modal.classList.add("hide");
+        noBtn.click(()=>{
+            modal.addClass("hide");
         })
 
 
