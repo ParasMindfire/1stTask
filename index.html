@@ -7,7 +7,8 @@
     <title>Mindfire Registration</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+    
 </head>
 
 <body>
@@ -25,6 +26,60 @@
                 </div>
             </div>
         </div>
+        
+
+        <div class="modal1 hide">
+            <div class="modal1-wrapper">
+                <div class="mainPreview">
+                    <div class="namePreview">
+                        <div>Name</div>
+                        <div id="namePrev">
+                            
+                        </div>
+                    </div>
+                    <div class="emailPreview">
+                        <div>email</div>
+                        <div id="emailPrev">
+                            
+                        </div>
+                    </div>
+                    <div class="genderPreview">
+                        <div>Gender</div>
+                        <div id="genderPrev">
+                            
+                        </div>
+                    </div>
+                    <div class="birthdayPreview">
+                        <div>Birthday</div>
+                        <div id="birthdayPrev">
+                            
+                        </div>
+                    </div>
+                    <div class="branchPreview">
+                        <div>Branch</div>
+                        <div id="branchPrev">
+                            
+                        </div>
+                    </div>
+                    <div class="aboutUpreview">
+                        <div>About</div>
+                        <div id="aboutUPrev">
+                            
+                        </div>
+                    </div>
+                    <div class="addressPreview">
+                        <div>Address</div>
+                        <div id="addressPrev">
+                            
+                        </div>
+                    </div>
+
+                    <div class="btn" onclick="closeModal1()">Close</div>
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="Navyy">
             <img src="/logo.webp" alt="">
@@ -39,245 +94,275 @@
         <div id="snackbar" class="hide">Some text some message..</div>
 
         <div class="container">
-                <form class="mainForm" id="userForm" onsubmit="return validateForm(event)">
-                    <div class="commonDiv">
-                        <div class="upload">
-                            <div class="uploadPhoto">
-                                <img class="uploadz" src="/dummy-profile-pic-male1-300x300.jpg" alt="">
-                            </div>
-        
-                            <div class="uploadPhotoDocs">
-                                <input type="file" id="myFile" name="filename" onchange = 'renderFile()'>
-                                <!-- <button class="btn">Upload</button> -->
+            <form class="mainForm" id="userForm" onsubmit="return validateForm(event)">
 
-                                <br>
+                <div class="formStepper">
+                    <div class="navigator">
+                        <div class="firstCircle" id="first" onclick="showist()"><div>1</div></div>
 
-                                <!-- error message -->
-                                <span id="file-error" class="error-message"></span>
-                            </div>
-                        </div>
+                        <div class="secondCircle" id="second" onclick="show2nd()"><div>2</div></div>
+                        
+                        <div class="thirdCircle" id="third" onclick="show3rd()"><div>3</div></div>
+
+                        <div class="stLine"></div>
                     </div>
-        
-                    <div class="paddingDiv">
-                        <div class="commonDiv">
-                            <div class="nameClass">
-                                
-                                <input type="text" id="first_name" class="nameInput" name="first_name" placeholder="First Name*">
-        
-                                <input type="text" id="middle_name" class="nameInput"
-                                name="middle_name" placeholder="Middle Name*">
-        
-                                <input type="text" id="last_name" class="nameInput"
-                                name="last_name" placeholder="Last Name*">
 
-                                <br>
-                                <!-- error message -->
-                                <span id="fname-error" class="error-message"></span>
-                            </div>
-                        </div>
-
-                        <div class="commonDiv">
-                            <div class="nameClass">
-                                <!-- <div class="mailClass"> -->
-                                    <input type="text" id="mail" class="nameInput" name="mail" placeholder="email*" onfocusout="myEmail()">
-
-                                    <br>
-                                    <!-- error message -->
-                                    <span id="email-error" class="error-message"></span>
-
-                                <!-- </div> -->
-        
-                                <!-- <div class="passwordClass"> -->
-                                    <input type="password" id="password" class="nameInput" name="password" placeholder="password*">
-
-                                    <br>
-                                    <!-- error message -->
-                                    <span id="pass-error" class="error-message"></span>
-
-                                <!-- </div> -->
-
-                                <!-- <div class="ConfirmpasswordClass"> -->
-                                    <input type="password" id="ConfirmpasswordClass" class="nameInput" name="ConfirmpasswordClass" placeholder="Confirm Password*">
-
-                                    <br>
-
-                                    <!-- error message -->
-                                    <span id="confirm-password-error" class="error-message "></span>
-
-                                <!-- </div> -->
-                            </div>  
-                        </div>
-
-
-
-                        <div class="commonDiv">
-                            <div class="address">
-                                <select id="CountryList" oninput="checkCountry()">
-                                    <option>--Select a Country--</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="commonDiv">
-                            <div class="address">
-                                <select id="StateList" oninput="checkState()">
-                                    <option>--Select a State--</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="commonDiv">
-                            <div class="address">
-                                <select id="cityList">
-                                    <option>--Select a city--</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        
-            
-                        <div class="commonDiv">
-                            <div class="genderClass">
-                                <div class="commonGenderClass">
-                                    <label>Gender Type*</label>
-                                </div>
-
-                                <div class="commonGenderClass">
-                                    <input type="radio" class="radioClass"  name="radioBut" id="male">
-                                    <label for="rad2">Male</label>
-                                
-                
-                        
-                                    <input type="radio" class="radioClass" name="radioBut" id="female">
-                                    <label for="rad1">Female</label>
-                              
-                                
-                                    <input type="radio" class="radioClass" name="radioBut" id="trans">
-                                    <label for="rad3">Trans</label>
-                                </div>
-
-                                <br>
-                                <!-- error message -->
-                                <span id="gender-error" class="error-message "></span>
-                            </div>
-                            
-                        </div>
-
-
-                        <div class="commonDiv">
-                            <div class="selectClass">
-                                <label for="selectElem">What is your branch</label>
-                                <select name="selectElem" id="brranch">
-                                    <option value="CS">CS</option>
-                                    <option value="IT">IT</option>
-                                    <option value="EI">EI</option>
-                                    <option value="CIVIL">CIVIL</option>
-                                </select>
-                            <br>
-
-                            <!-- error message -->
-                            <span id="select-error" class="error-message "></span>
-                            </div>
-                        </div>
-
-
-                        <div class="commonDiv">
-                            <div class="bday">
-                                <label for="birthday">Birthday:*</label>
-                                <input id="birthday" type="date" name="birthday">
-
-                                <br>
-
-                                <!-- error message -->
-                            <span id="confirmBday-error" class="error-message "></span>
-
-                            </div>
-                        </div>
-            
-            
-                        <div class="commonDiv">
-                            <div class="about">
-                                <div>
-                                    <label for="textElem">About You*</label>
-                                </div>
-                                
-                                <div>
-                                    <input name="textElem" id="textArea">
-                                </div>
-
-                                <!-- error message -->
-                                <span id="aboutU-error" class="error-message "></span>
-                            </div>
-                        </div>
+                    <div>
+                        <div class="step step1 active " id="stepz1">
+                            <div class="paddingDiv">
+                                <div class="commonDiv">
+                                    <div class="upload">
+                                        <div class="uploadPhoto">
+                                            <img class="uploadz" src="/dummy-profile-pic-male1-300x300.jpg" alt="">
+                                        </div>
                     
-                        <div class="commonDiv">
-                            <input list="ok" name="datalistID" placeholder="Preferred Domain">
-                            <datalist id="ok">
-                                <option value="MERN">
-                                <option value="AIML">
-                                <option value="DOTNET">
-                            </datalist>
-                        </div>
+                                        <div class="uploadPhotoDocs">
+                                            <input type="file" id="myFile" name="filename" onchange = 'renderFile()'>
+                                            <!-- <button class="btn">Upload</button> -->
             
+                                            <br>
             
-            
-                        <div class="commonDiv">
-                            <input type="checkbox" name="checkBox1" class="checkBoxClass" value="check1" id="agree">
-                            <label for="check1">Do You Agree To The Terms And Conditions</label>
-
-                            <br>
-                            <!-- error message  -->
-                            <span id="agree-error" class="error-message"></span>
-                        </div>
-                        
-            
-                        <div class="commonDiv">
-                            <button type="submit" value="Submit" name="Submit" class="btn" id="submitButton"/>
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-
-
-
-
-                <!-- <form action="">
-                    <div class="commondiv">
-
-                    </div>
-                </form> -->
-
-
-
-
-
-
+                                            <!-- error message -->
+                                            <span id="file-error" class="error-message"></span>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+                                <div class="commonDiv">
+                                    <div class="nameClass">
+                                        
+                                        <input type="text" id="first_name" class="nameInput" name="first_name" placeholder="First Name*">
                 
-
-
-
-                <div class="tableContainer">
-                    <h2>People</h2>
-                    <table id="peopleTable">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>DOB</th>
-                                <th>Branch</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                        </tbody>
-                    </table>
+                                        <input type="text" id="middle_name" class="nameInput"
+                                        name="middle_name" placeholder="Middle Name*">
+                
+                                        <input type="text" id="last_name" class="nameInput"
+                                        name="last_name" placeholder="Last Name*">
+        
+                                        <br>
+                                        <!-- error message -->
+                                        <span id="fname-error" class="error-message"></span>
+                                    </div>
+                                </div>
+        
+                                
+                    
+                                <div class="commonDiv">
+                                    <div class="genderClass">
+                                        <div class="commonGenderClass">
+                                            <label>Gender Type*</label>
+                                        </div>
+        
+                                        <div class="commonGenderClass" id="genderGetter">
+                                            <input type="radio" class="radioClass"  name="radioBut" id="male">
+                                            <label for="rad2">Male</label>
+                                        
+                        
+                                
+                                            <input type="radio" class="radioClass" name="radioBut" id="female">
+                                            <label for="rad1">Female</label>
+                                        
+                                        
+                                            <input type="radio" class="radioClass" name="radioBut" id="trans">
+                                            <label for="rad3">Trans</label>
+                                        </div>
+        
+                                        <br>
+                                        <!-- error message -->
+                                        <span id="gender-error" class="error-message "></span>
+                                    </div>
+                                    
+                                </div>
+        
+        
+        
+                                <div class="commonDiv">
+                                    <div class="bday">
+                                        <label for="birthday">Birthday:*</label>
+                                        <input id="birthday" type="date" name="birthday">
+        
+                                        <br>
+        
+                                        <!-- error message -->
+                                    <span id="confirmBday-error" class="error-message "></span>
+        
+                                    </div>
+                                </div>
+                    
+                    
+                                <div class="commonDiv">
+                                    <div class="about">
+                                        <div>
+                                            <label for="textElem">About You*</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input name="textElem" id="textArea">
+                                        </div>
+        
+                                        <!-- error message -->
+                                        <span id="aboutU-error" class="error-message "></span>
+                                    </div>
+                                </div>
+                    
+        
+                                
+                                <div class="commonDiv">
+                                    <div class="btn next">Next</div>
+                                    </div>
+                            </div>
+                        </div>
+        
+        
+                        <div class="step step-2 " id="stepz2">
+                            <div class="paddingDiv">
+        
+                                <h3>Step 2: Address Details</h3>
+        
+                                <div class="commonDiv">
+                                    <div class="nameClass">
+                                        <!-- <div class="mailClass"> -->
+                                            <input type="text" id="mail" class="nameInput" name="mail" placeholder="email*" onfocusout="myEmail()">
+            
+                                            <br>
+                                            <!-- error message -->
+                                            <span id="email-error" class="error-message"></span>
+            
+                                        <!-- </div> -->
+                
+                                        <!-- <div class="passwordClass"> -->
+                                            <input type="password" id="password" class="nameInput" name="password" placeholder="password*">
+            
+                                            <br>
+                                            <!-- error message -->
+                                            <span id="pass-error" class="error-message"></span>
+            
+                                        <!-- </div> -->
+            
+                                        <!-- <div class="ConfirmpasswordClass"> -->
+                                            <input type="password" id="ConfirmpasswordClass" class="nameInput" name="ConfirmpasswordClass" placeholder="Confirm Password*">
+            
+                                            <br>
+            
+                                            <!-- error message -->
+                                            <span id="confirm-password-error" class="error-message "></span>
+            
+                                        <!-- </div> -->
+                                    </div>  
+                                </div>
+            
+            
+                                <div class="commonDiv">
+                                    <div class="selectClass">
+                                        <label for="selectElem">What is your branch</label>
+                                        <select name="selectElem" id="brranch">
+                                            <option value="CS">CS</option>
+                                            <option value="IT">IT</option>
+                                            <option value="EI">EI</option>
+                                            <option value="CIVIL">CIVIL</option>
+                                        </select>
+                                    <br>
+            
+                                    <!-- error message -->
+                                    <span id="select-error" class="error-message "></span>
+                                    </div>
+                                </div>
+            
+            
+                                <div class="addressClass">
+                                    <div class="commonDiv">
+                                        <div class="address">
+                                            <select id="CountryList" oninput="checkCountry()">
+                                                <option>--Select a Country--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                
+                                    <div class="commonDiv">
+                                        <div class="address">
+                                            <select id="StateList" oninput="checkState()">
+                                                <option>--Select a State--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                
+                                    <div class="commonDiv">
+                                        <div class="address">
+                                            <select id="cityList">
+                                                <option>--Select a city--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="commonDiv">
+                                    <div class="btn previous">Previous</div>
+                                    <div class="btn next">Next</div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <div class="step step-3 " id="stepz3">
+                            <h3>Step 3: Review & Submit</h3>
+                            <div class="commonDiv">
+                                <p>Please review your information and click submit to complete.</p>
+                            </div>
+        
+                            <div class="commonDiv">
+                                <input type="checkbox" name="checkBox1" class="checkBoxClass" value="check1" id="agree">
+                                <label for="check1">Do You Agree To The Terms And Conditions</label>
+        
+                                <br>
+                                <!-- error message  -->
+                                <span id="agree-error" class="error-message"></span>
+                            </div>
+        
+                            <div class="commonDiv">
+                                <div class="btn previous">Previous</div>
+        
+                                <div class="btn preview" onclick="openModalz()">
+                                    preview
+                                </div>
+        
+                                <div class="commonDiv">
+                                    <button type="submit" value="Submit" name="Submit" class="btn" id="submitButton"/>
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        </div>        
+
+            </form>
+
+
+            
+            <div class="tableContainer">
+                <h2>People</h2>
+                <table id="peopleTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>DOB</th>
+                            <th>Branch</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+        
+        
     </div>
 
+    <script src="jquery-3.7.1.min.js"></script>
     <script src="index.js"></script> 
 
 
