@@ -361,8 +361,7 @@
     
     
     // email vlidation
-    
-        function myEmail() {
+       function myEmail() {
     
             const email = $("#mail").val();
             const emailErr = $("#email-error");
@@ -371,6 +370,9 @@
     
             if (email === "" || !email.includes("@") || !email.includes(".")) {
                 emailErr.text("Please include @");
+                setTimeout(()=>{
+                    emailErr.text("");
+                })
             }
     
         }
@@ -572,6 +574,12 @@
                     const toDel=peopleArray.find((people)=>people.          email==toFindEmail);
                     peopleArray[toDel.id]={};
                     openToast(message,"safe")
+
+                    $('#submitButton').text('Submit');
+                    $('#first_name').val(null);
+                    $('#mail').val(null);
+                    $('#birthday').val(null);
+                    $('#brranch').val(null); 
                 }else{
                     openToast("Enter The Password Correctly","danger")
                 }
@@ -587,25 +595,9 @@
         function openModalz(){
             const modalz =$(".modal1");
     
-            var FullName=$("#first_name").val()+" "+$("#middle_name").val()+" "+$("#last_name").val();
+            var FullName=$("#first_name").val();
     
-            var GenderrMale=$("#male").is(':checked');
-            var GenderrFemale=$("#female").is(':checked');
-            var GenderrTrans=$("#trans").is(':checked');
-    
-            // console.log("Genderr ",GenderrMale);
-            // console.log("Genderr ",GenderrFemale);
-            // console.log("Genderr ",GenderrTrans);
-    
-            var textGender="";
-    
-            if(GenderrMale){
-                textGender="Male";
-            }else if(GenderrFemale){
-                textGender="Female";
-            }else if(GenderrTrans){
-                textGender="Trans";
-            }
+            var Genderr=$("#gender").val();
     
     
             var country=$("#CountryList").val();
@@ -613,11 +605,11 @@
             var city=$("#cityList").val();
     
     
-            // console.log("FullNAme ",FullName);
+            console.log("TextArea Value ",$("#textArea")   );
     
             $('#namePrev').text(FullName);
             $('#emailPrev').text($("#mail").val());
-            $('#genderPrev').text(textGender);
+            $('#genderPrev').text(Genderr);
             $('#birthdayPrev').text($("#birthday").val()); 
             $('#branchPrev').text($("#brranch").val()); 
             $('#aboutUPrev').text($("#textArea").val()); 
@@ -672,9 +664,9 @@
             $("#stepz2").removeClass("active");
             $("#stepz3").removeClass("active");
 
-            $("#first").css("background-color","rgb(59 3 37)");
-            $("#second").css("background-color","#ee36a8")
-            $("#third").css("background-color","#ee36a8")
+            $("#first").css("background-color","white");
+            $("#second").css("background-color","rgb(9, 137, 146)")
+            $("#third").css("background-color","rgb(9, 137, 146)")
         }
 
         function show2nd(){
@@ -682,9 +674,9 @@
             $("#stepz1").removeClass("active");
             $("#stepz3").removeClass("active");
 
-            $("#second").css("background-color","rgb(59 3 37)");
-            $("#first").css("background-color","#ee36a8")
-            $("#third").css("background-color","#ee36a8")
+            $("#second").css("background-color","white");
+            $("#first").css("background-color","rgb(9, 137, 146)")
+            $("#third").css("background-color","rgb(9, 137, 146)")
         }
 
         function show3rd(){
@@ -692,9 +684,9 @@
             $("#stepz1").removeClass("active");
             $("#stepz2").removeClass("active");
 
-            $("#third").css("background-color","rgb(59 3 37)");
-            $("#second").css("background-color","#ee36a8")
-            $("#first").css("background-color","#ee36a8")
+            $("#third").css("background-color","white");
+            $("#second").css("background-color","rgb(9, 137, 146)")
+            $("#first").css("background-color","rgb(9, 137, 146)")
         }
 
 

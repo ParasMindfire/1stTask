@@ -31,59 +31,63 @@
         <div class="modal1 hide">
             <div class="modal1-wrapper">
                 <div class="mainPreview">
-                    <div class="namePreview">
-                        <div>Name</div>
-                        <div id="namePrev">
-                            
+                    <div class="namePhoto">
+
+                        <div class="imgPreview">
+                            <img class="uploadz" src="/dummy-profile-pic-male1-300x300.jpg" alt="">
                         </div>
-                    </div>
-                    <div class="emailPreview">
-                        <div>email</div>
-                        <div id="emailPrev">
-                            
+
+                        <div class="namePreview">
+                            <div id="namePrev">Name</div>
+                            <div class="branchPreview">
+                                <div id="branchPrev">Branch</div>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="genderPreview">
-                        <div>Gender</div>
-                        <div id="genderPrev">
-                            
+                    
+                    <div class="lowerCard">
+                        <div class="prevInput">
+                            <div class="emailPreview" id="emailPrev">email</div>
                         </div>
-                    </div>
-                    <div class="birthdayPreview">
-                        <div>Birthday</div>
-                        <div id="birthdayPrev">
-                            
+    
+    
+                        <div class="genderBdayPreview">
+                            <div class="genderPrevClass">
+                                <div id="genderPrev">
+                                    Gender
+                                </div>
+                            </div>
+                            <div class="birthdayPrevClass">
+                                <div id="birthdayPrev">
+                                    Birthday
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="branchPreview">
-                        <div>Branch</div>
-                        <div id="branchPrev">
-                            
+    
+                
+                        <div class="aboutUpreview">
+                            <div id="aboutUPrev">About</div>
                         </div>
-                    </div>
-                    <div class="aboutUpreview">
-                        <div>About</div>
-                        <div id="aboutUPrev">
-                            
-                        </div>
-                    </div>
-                    <div class="addressPreview">
-                        <div>Address</div>
-                        <div id="addressPrev">
-                            
+    
+    
+                        <div class="addressPreview">
+                            <div id="addressPrev">Address</div>
                         </div>
                     </div>
 
-                    <div class="btn" onclick="closeModal1()">Close</div>
+                    <div class="btnClass">
+                        <div class="btn1" onclick="closeModal1()">Close</div>
+                    </div>
                 </div>
             </div>
         </div>
 
 
 
-        <div class="Navyy">
+        <!-- <div class="Navyy">
             <img src="/logo.webp" alt="">
-        </div>
+        </div> -->
 
         <div class="mainTitle">
             <div class="typewriter">
@@ -132,84 +136,69 @@
                                 <div class="commonDiv">
                                     <div class="nameClass">
                                         
-                                        <input type="text" id="first_name" class="nameInput" name="first_name" placeholder="First Name*">
+                                        <input type="text" id="first_name" class="nameInput" name="first_name" placeholder="Full Name*">
                 
-                                        <input type="text" id="middle_name" class="nameInput"
+                                        <!-- <input type="text" id="middle_name" class="nameInput"
                                         name="middle_name" placeholder="Middle Name*">
                 
                                         <input type="text" id="last_name" class="nameInput"
-                                        name="last_name" placeholder="Last Name*">
+                                        name="last_name" placeholder="Last Name*"> -->
         
                                         <br>
                                         <!-- error message -->
                                         <span id="fname-error" class="error-message"></span>
                                     </div>
                                 </div>
-        
-                                
-                    
-                                <div class="commonDiv">
-                                    <div class="genderClass">
-                                        <div class="commonGenderClass">
-                                            <label>Gender Type*</label>
+    
+
+                                <div class="genderBday">
+
+                                    <div class="commonDiv">
+                                        <div class="genderClass">
+                                            <select name="genderElem" id="gender">
+                                                <option value="Male">---Gender---</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+            
+                                            <br>
+                                            <!-- error message -->
+                                            <span id="gender-error" class="error-message "></span>
                                         </div>
-        
-                                        <div class="commonGenderClass" id="genderGetter">
-                                            <input type="radio" class="radioClass"  name="radioBut" id="male">
-                                            <label for="rad2">Male</label>
                                         
-                        
-                                
-                                            <input type="radio" class="radioClass" name="radioBut" id="female">
-                                            <label for="rad1">Female</label>
-                                        
-                                        
-                                            <input type="radio" class="radioClass" name="radioBut" id="trans">
-                                            <label for="rad3">Trans</label>
+                                    </div>
+            
+            
+            
+                                    <div class="commonDiv">
+                                        <div class="bday">
+                                            <input id="birthday" type="text" name="birthday"
+                                            placeholder="Birthday"
+                                            onfocus="(this.type='date')"
+                                            onblur="(this.type='text')">
+            
+                                            <br>
+            
+                                            <!-- error message -->
+                                        <span id="confirmBday-error" class="error-message "></span>
+            
                                         </div>
-        
-                                        <br>
-                                        <!-- error message -->
-                                        <span id="gender-error" class="error-message "></span>
                                     </div>
-                                    
-                                </div>
-        
-        
-        
-                                <div class="commonDiv">
-                                    <div class="bday">
-                                        <label for="birthday">Birthday:*</label>
-                                        <input id="birthday" type="date" name="birthday">
-        
-                                        <br>
-        
-                                        <!-- error message -->
-                                    <span id="confirmBday-error" class="error-message "></span>
-        
-                                    </div>
+
                                 </div>
                     
                     
                                 <div class="commonDiv">
                                     <div class="about">
-                                        <div>
-                                            <label for="textElem">About You*</label>
-                                        </div>
-                                        
-                                        <div>
-                                            <input name="textElem" id="textArea">
-                                        </div>
-        
-                                        <!-- error message -->
-                                        <span id="aboutU-error" class="error-message "></span>
+                                        <textarea name="" id="textArea" placeholder="About You"></textarea>
                                     </div>
                                 </div>
                     
         
                                 
                                 <div class="commonDiv">
-                                    <div class="btn next">Next</div>
+                                    <div class="btn next"><div>Next</div></div>
                                     </div>
                             </div>
                         </div>
@@ -220,8 +209,8 @@
         
                                 <h3>Step 2: Address Details</h3>
         
-                                <div class="commonDiv">
-                                    <div class="nameClass">
+                                <!-- <div class="commonDiv"> -->
+                                    <div class="mailPassClass">
                                         <!-- <div class="mailClass"> -->
                                             <input type="text" id="mail" class="nameInput" name="mail" placeholder="email*" onfocusout="myEmail()">
             
@@ -250,13 +239,13 @@
             
                                         <!-- </div> -->
                                     </div>  
-                                </div>
+                                <!-- </div> -->
             
             
                                 <div class="commonDiv">
                                     <div class="selectClass">
-                                        <label for="selectElem">What is your branch</label>
                                         <select name="selectElem" id="brranch">
+                                            <option value="CS">---Branch---</option>
                                             <option value="CS">CS</option>
                                             <option value="IT">IT</option>
                                             <option value="EI">EI</option>
@@ -297,37 +286,45 @@
                                 </div>
         
                                 <div class="commonDiv">
-                                    <div class="btn previous">Previous</div>
-                                    <div class="btn next">Next</div>
+                                    <div class="step2-button">
+                                        <div class="btn previous">Previous</div>
+                                        <div class="btn next">Next</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
         
         
                         <div class="step step-3 " id="stepz3">
-                            <h3>Step 3: Review & Submit</h3>
-                            <div class="commonDiv">
-                                <p>Please review your information and click submit to complete.</p>
+                            <div class="step-3-heading">
+                                <h3>Preview & Submit</h3>
+                            </div>
+
+                            <div class="preview" onclick="openModalz()">
+                                <div class="previewInside">
+                                    <div class="mostPreview">
+                                        preview
+                                    </div>
+                                </div>
                             </div>
         
                             <div class="commonDiv">
-                                <input type="checkbox" name="checkBox1" class="checkBoxClass" value="check1" id="agree">
-                                <label for="check1">Do You Agree To The Terms And Conditions</label>
-        
+                                <div class="checkDiv">
+                                    <input type="checkbox" name="checkBox1" class="checkBoxClass" value="check1" id="agree">
+                                    <div for="check1" id="check">Do You Agree To The Terms And Conditions</div>
+                                </div>
+                            
                                 <br>
                                 <!-- error message  -->
                                 <span id="agree-error" class="error-message"></span>
                             </div>
+                            
         
                             <div class="commonDiv">
-                                <div class="btn previous">Previous</div>
-        
-                                <div class="btn preview" onclick="openModalz()">
-                                    preview
-                                </div>
+                                <div class="btn previous" id="prevLast">Previous</div>
         
                                 <div class="commonDiv">
-                                    <button type="submit" value="Submit" name="Submit" class="btn" id="submitButton"/>
+                                    <button type="submit" value="Submit" name="Submit" class="SubmitBtn" id="submitButton"/>
                                         Submit
                                     </button>
                                 </div>
