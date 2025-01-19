@@ -93,7 +93,7 @@ body{
 
 
 
-.modal1{
+/* .modal1{
     background: rgba(0, 0, 0, 0.95);
     width: 100%;
     height: 100%;
@@ -103,17 +103,18 @@ body{
     left: 0;
     right: 0;
     z-index: 2;
-}
+} */
 
 .modal1-wrapper {
     width:300px;
-    height: 50%;
+    height:500px;
     background: ghostwhite;
-    position: fixed;
-    top: 50%;
+    /* position: fixed; */
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     box-shadow: 0 0 30px #0ef; 
+    margin: auto;
 }
 
 .mainPreview{
@@ -477,6 +478,7 @@ body{
 .upload{
     flex-wrap: wrap;
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -491,9 +493,9 @@ body{
     transition: transform 0.3s ease-in-out;
 }
 
-.uploadPhoto img:hover {
+/* .uploadPhoto img:hover {
     transform: scale(1.1);
-}
+} */
 
 #myFile {
     margin-top:5px;
@@ -528,7 +530,7 @@ body{
 /* ----------------------padding------------------ */
 .paddingDiv{
     padding-left: 10%;
-    padding-right: 18%;
+    padding-right: 10%;
     padding-bottom: 5%;
     margin: auto;
 }
@@ -684,6 +686,7 @@ input:hover::placeholder{
 
 /* Error Message */
 .error-message {
+
     color: red;
     font-size: 12px;
     margin-top: 5px;
@@ -810,7 +813,9 @@ input:hover::placeholder{
 
 /* ----------------------step-2-------------------- */
 
-.step2-button{
+.step-button{
+    bottom: 100px;
+    padding: 10%;
     display: flex;
     justify-content: space-between;
 }   
@@ -920,7 +925,7 @@ table th, table td{
 }
 
 
-/* ------------------Delete and Edit Button----------------- */
+/* ------------------Delete and Edit Button------f----------- */
 
 .button{
     padding: 8px 12px;
@@ -951,13 +956,17 @@ table th, table td{
 
 
 
-
+  .step1{
+    /* margin-top: -21px; */
+    padding-top: 10%;
+  }
   
   .step {
     display: none;
+    height:550px;
   }
   
-  .step.active {
+  .active {
     display: block;
   }
   
@@ -1013,6 +1022,30 @@ table th, table td{
     color:black;
     box-shadow: 0 0 30px #0ef
 }
+
+
+.Inactive{
+    display:none;
+}
+
+#uploadFontAwesome{
+    position: relative;
+    left:48px;
+    top:78px;
+    cursor: pointer;
+    font-size:25px;
+}
+
+.uploadPhotoText{
+    color: white;
+    margin-top: 2%;
+}
+
+.errorDiv{
+    height:8px;
+    width:100%;
+}
+
 
 
 
