@@ -1,3 +1,6 @@
+import { StepperModule } from "./Stepper.js";
+import { RenderFileModule } from "./RenderFile.js";
+
 export const TableModule = (() => {
     class Person {
         constructor(id, name, branch, email, birthday, password) {
@@ -51,64 +54,55 @@ export const TableModule = (() => {
 
     form.submit((event) => {
         event.preventDefault();
-
+    
         const fname = $("#first_name").val();
         const branch = $("#brranch").val();
         const email = $("#mail").val();
         const confirmBday = $("#birthday").val();
         const passw = $("#password").val();
-
-        console.log("fname ", fname, " branch ", branch, " email ", email, " confirmBday ", confirmBday);
-
-        let tempEmail = peopleArray.find((people) => {
-            return people.email == email;
-        });
-
-        if (tempEmail) {
-            openToast("Email Already Exist", "danger");
-        } else if (fname && branch && email && confirmBday) {
-            var message = "Form Created Successfully";
+    
+        if (fname && branch && email && confirmBday) {
             if (submit) {
-                openToast(message, "safe");
                 idz += 1;
-
                 const tempObj = new Person(idz, fname, branch, email, confirmBday, passw);
                 peopleArray.push(tempObj);
                 saveToLocalStorage();
-
                 const row = createRow(tempObj);
                 table.append(row);
             } else {
                 let currObj = peopleArray[toEdit];
-
-                $(tr[toEdit][0].cells[0]).text(fname);
-                $(tr[toEdit][0].cells[1]).text(email);
-                $(tr[toEdit][0].cells[2]).text(confirmBday);
-                $(tr[toEdit][0].cells[3]).text(branch);
-
+                currObj.name = fname;
+                currObj.email = email;
+                currObj.birthday = confirmBday;
+                currObj.branch = branch;
+    
+                $(tr[toEdit].cells[0]).text(fname);
+                $(tr[toEdit].cells[1]).text(email);
+                $(tr[toEdit].cells[2]).text(confirmBday);
+                $(tr[toEdit].cells[3]).text(branch);
+    
                 $('#submitButton').text('Submit');
                 submit = true;
-
-                openToast("Form Edited Successfully", "safe");
+    
+                saveToLocalStorage();
             }
+    
+            form.trigger("reset");
         } else {
-            message = "Add Required Fields before submitting";
-            openToast(message, "danger");
+            openToast("Add Required Fields before submitting", "danger");
         }
-
-        form.trigger("reset");
     });
 
     const editRow = (row, id) => {
         let toFindEmail = row.cells[1].innerText;
-
-        const findobj = peopleArray.find((e) => {
-            return e.email == toFindEmail;
-        });
-
+    
+        const findobj = peopleArray.find((e) => e.email == toFindEmail);
+    
         toEdit = findobj.id;
         submit = false;
         $('#submitButton').text('Edit');
+        tr[toEdit] = row;
+    
         $('#first_name').val($(row.cells[0]).text());
         $('#mail').val($(row.cells[1]).text());
         $('#birthday').val($(row.cells[2]).text());
@@ -121,40 +115,46 @@ export const TableModule = (() => {
 
     const openModal = (row) => {
         const modal = $(".modal");
-
         modal.removeClass("hide");
-
+    
         const yesBtn = $('#yes');
         const noBtn = $('#no');
-        $('#modalInput').text(null);
-
-        yesBtn.click(() => {
+        $('#modalInput').val(''); 
+    
+        yesBtn.off('click').click(() => {  
             const pass = $('#modalInput').val();
             let toFindEmail = $(row.cells[1]).text();
-
-            const findobj = peopleArray.find((e) => {
-                return e.email == toFindEmail;
-            });
-
-            if (pass == findobj.password) {
+    
+            const findobj = peopleArray.find((e) => e.email === toFindEmail);
+    
+            if (!findobj) {
+                openToast("User not found", "danger");
+                return;
+            }
+    
+            console.log("Entered Pass:", pass);
+            console.log("Stored Pass:", findobj.password);
+    
+            if (pass === findobj.password) {
                 row.remove();
                 modal.addClass("hide");
-
-                const toDelIndex = peopleArray.findIndex((people) => people.email == toFindEmail);
-            
+    
+                const toDelIndex = peopleArray.findIndex((people) => people.email === toFindEmail);
+    
                 if (toDelIndex !== -1) {
                     peopleArray.splice(toDelIndex, 1);
                 }
-                console.log("kuch hua ",peopleArray);
+    
+                console.log("Updated peopleArray:", peopleArray);
                 saveToLocalStorage(); 
-
+    
                 openToast("Record Deleted Successfully", "safe");
             } else {
                 openToast("Enter The Password Correctly", "danger");
             }
         });
-
-        noBtn.click(() => {
+    
+        noBtn.off('click').click(() => {  
             modal.addClass("hide");
         });
     };
@@ -168,7 +168,7 @@ export const TableModule = (() => {
         var state = $("#StateList").val();
         var city = $("#cityList").val();
 
-        $('#namePrev').text(FullName);
+        $('#namePrev').text(FullName+" , ");
         $('#emailPrev').text($("#mail").val());
         $('#genderPrev').text(Genderr);
         $('#birthdayPrev').text($("#birthday").val());

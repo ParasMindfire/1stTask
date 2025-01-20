@@ -133,6 +133,7 @@ body{
 
 
 .imgPreview img {
+    margin-top: 20px;
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -156,8 +157,8 @@ body{
 
 .lowerCard{
     /* border:2px solid red; */
-    height:60%;
-    padding-top: 8%;
+    height:70%;
+    padding-top: 19%;
 }
 
 .emailPreview{
@@ -540,7 +541,7 @@ body{
 
 .nameClass input, .bday input {
     width: 100%;
-    padding: 12px;
+    padding: 7px;
     border-radius: 8px;
     border: 1px solid #ccc;
     box-shadow: inset 0px 1px 3px rgba(0,0,0,0.1);
@@ -584,9 +585,9 @@ input:hover::placeholder{
 .mailPassClass input{
     background-color:white;
     backdrop-filter: blur(8px);
-    margin-top: 10px;
+    margin-top: 3px;
     width: 100%;
-    padding: 12px;
+    padding: 7px;
     border-radius: 8px;
     cursor: pointer;
     outline: none;
@@ -660,7 +661,7 @@ input:hover::placeholder{
 
 .genderClass select {
     /* width: 100%; */
-    padding: 12px;
+    padding: 7px;
     border-radius: 8px;
     border: 1px solid #ccc;
     background-color: white;
@@ -1047,6 +1048,39 @@ table th, table td{
 }
 
 
+.commonLabel{
+    color:white;
+    font-style: italic;
+}
+
+.bday{
+    width:195px;
+    padding-left: 44px;
+}
+
+.genderClass{
+    width:167px;
+}
+
+#gender{
+    width:100%;
+}
+
+.extraPadding{
+    margin-left:75%;
+}
+
+.extraBtn{
+    margin-left: 70%;
+    box-shadow: 0 0 30px #0ef;
+    background-color: rgb(224, 217, 217);
+    cursor: pointer;
+}
+
+.extraBtn:hover{
+    background-color: rgb(16, 168, 156);
+    color: white;
+}
 
 
 

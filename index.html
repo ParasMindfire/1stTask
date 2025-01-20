@@ -97,14 +97,10 @@
         
                                 <div class="commonDiv">
                                     <div class="nameClass">
+
+                                        <label class="commonLabel">Full Name*</label>
                                         
-                                        <input type="text" id="first_name" class="nameInput" name="first_name" placeholder="Full Name*">
-                
-                                        <!-- <input type="text" id="middle_name" class="nameInput"
-                                        name="middle_name" placeholder="Middle Name*">
-                
-                                        <input type="text" id="last_name" class="nameInput"
-                                        name="last_name" placeholder="Last Name*"> -->
+                                        <input type="text" id="first_name" class="nameInput" name="first_name">
         
                                         <br>
                                         <!-- error message -->
@@ -119,8 +115,11 @@
 
                                     <div class="commonDiv">
                                         <div class="genderClass">
+                                            <div class="commonLabel">
+                                                Gender*
+                                            </div>
                                             <select name="genderElem" id="gender">
-                                                <option>---Gender*---</option>
+                                                <option>-Choose Gender-</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Others">Others</option>
@@ -139,10 +138,10 @@
 
                                     <div class="commonDiv">
                                         <div class="bday">
-                                            <input id="birthday" type="text" name="birthday"
-                                            placeholder="Birthday*"
-                                            onfocus="(this.type='date')"
-                                            onblur="(this.type='text')">
+                                            <div class="commonLabel">
+                                                Birthday*
+                                            </div>
+                                            <input id="birthday" type="date" name="birthday">
             
                                             <br>
             
@@ -156,12 +155,20 @@
                                 </div>
                                 
 
-                                
                                 <div class="commonDiv">
                                     <div class="about">
-                                        <textarea name="" id="textArea" placeholder="About You"></textarea>
+                                        <div class="commonLabel">
+                                            About You
+                                        </div>
+                                        <textarea name="" id="textArea"></textarea>
                                     </div>
+
+                                    <div class="errorDiv">
+                                        <span id="aboutU-error" class="error-message "></span>
+                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
         
@@ -169,12 +176,15 @@
                         <div class="step step-2 " id="stepz2">
                             <div class="paddingDiv">
         
-                                <h3>Step 2: Address Details</h3>
+                                <!-- <h3>Step 2: Address Details</h3> -->
         
                                 <!-- <div class="commonDiv"> -->
                                     <div class="mailPassClass">
                                         <!-- <div class="mailClass"> -->
-                                            <input type="text" id="mail" class="nameInput" name="mail" placeholder="email*" onfocusout="myEmail()">
+                                            <div class="commonLabel">
+                                                Email*
+                                            </div>
+                                            <input type="text" id="mail" class="nameInput" name="mail" onfocusout="myEmail()">
             
                                             <br>
                                             <!-- error message -->
@@ -182,23 +192,33 @@
                                             <div class="errorDiv">
                                                 <span id="email-error" class="error-message"></span>
                                             </div>
-            
+
+                                            <br>
                                         <!-- </div> -->
                 
                                         <!-- <div class="passwordClass"> -->
-                                            <input type="password" id="password" class="nameInput" name="password" placeholder="password*">
+                                            <div class="commonLabel">
+                                                Password
+                                            </div>
+                                            <input type="password" id="password" class="nameInput" name="password">
             
                                             <br>
                                             <!-- error message -->
                                              <div class="errorDiv">
                                                 <span id="pass-error" class="error-message"></span>
                                              </div>
+
+                                             <br>
                                             
             
                                         <!-- </div> -->
             
                                         <!-- <div class="ConfirmpasswordClass"> -->
-                                            <input type="password" id="ConfirmpasswordClass" class="nameInput" name="ConfirmpasswordClass" placeholder="Confirm Password*">
+                                            <div class="commonLabel">
+                                                Confirm Password
+                                            </div>
+
+                                            <input type="password" id="ConfirmpasswordClass" class="nameInput" name="ConfirmpasswordClass" onfocusout="confirmPass()">
             
                                             <br>
 
@@ -217,16 +237,17 @@
             
                                 <div class="commonDiv">
                                     <div class="selectClass">
+                                        <div class="commonLabel">
+                                            Branch
+                                        </div>
                                         <select name="selectElem" id="brranch">
-                                            <option value="CS">---Branch---</option>
+                                            <option>---Branch---</option>
                                             <option value="CS">CS</option>
                                             <option value="IT">IT</option>
                                             <option value="EI">EI</option>
                                             <option value="CIVIL">CIVIL</option>
                                         </select>
                                     <br>
-            
-                                    <!-- error message -->
                                     
                                     </div>
 
@@ -239,6 +260,9 @@
                                 <div class="addressClass">
                                     <div class="commonDiv">
                                         <div class="address">
+                                            <div class="commonLabel">
+                                                Select Country
+                                            </div>
                                             <select id="CountryList" oninput="checkCountry()">
                                                 <option>--Select a Country--</option>
                                             </select>
@@ -247,6 +271,9 @@
                 
                                     <div class="commonDiv">
                                         <div class="address">
+                                            <div class="commonLabel">
+                                                Select State
+                                            </div>
                                             <select id="StateList" oninput="checkState()">
                                                 <option>--Select a State--</option>
                                             </select>
@@ -255,6 +282,9 @@
                 
                                     <div class="commonDiv">
                                         <div class="address">
+                                            <div class="commonLabel">
+                                                Select City
+                                            </div>
                                             <select id="cityList">
                                                 <option>--Select a city--</option>
                                             </select>
@@ -273,14 +303,6 @@
                             <div class="step-3-heading">
                                 <h3>Preview & Submit</h3>
                             </div>
-
-                            <!-- <div class="preview" onclick="openModalz()">
-                                <div class="previewInside">
-                                    <div class="mostPreview">
-                                        preview
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="modal1-wrapper">
                                 <div class="mainPreview">
@@ -327,10 +349,6 @@
                                             <div id="addressPrev">Address</div>
                                         </div>
                                     </div>
-                
-                                    <div class="btnClass">
-                                        <div class="btn1" onclick="closeModal1()">Close</div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -345,16 +363,17 @@
                                 <!-- error message  -->
                                 <span id="agree-error" class="error-message"></span>
                             </div>
-                            
-        
+
                             <div class="commonDiv">
         
                                 <div class="commonDiv">
-                                    <button type="submit" value="Submit" name="Submit" class="SubmitBtn" id="submitButton">
+                                    <button type="submit" value="Submit" name="Submit" class="btn extraBtn" id="submitButton">
                                         Submit
                                     </button>
                                 </div>
                             </div>
+
+
                         </div>
 
                         <div class="commonDiv">

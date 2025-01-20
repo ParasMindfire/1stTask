@@ -17,11 +17,11 @@ export const AddressModule=(()=>{
         const citiesToDisplay=$("#cityList").html(null)
         
         let stateText=$("#StateList");
-        var optionn=$("<option></option>").text("Select A State")
+        var optionn=$("<option></option>").text("--Select a State--")
         stateText.append(optionn);
         
         let cityText=$("#cityList");
-        var option=$("<option></option>").text("Select A City")
+        var option=$("<option></option>").text("--Select a City--")
         cityText.append(option);
         
         const countrySelected=$("#CountryList").val();
@@ -50,7 +50,7 @@ export const AddressModule=(()=>{
         const citiesToDisplay=$("#cityList").html(null);
 
         let cityText=$("#cityList");
-        var option=$("<option></option>").text("Select a city");
+        var option=$("<option></option>").text("--Select a city--");
         cityText.append(option);
 
 

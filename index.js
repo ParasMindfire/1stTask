@@ -14,6 +14,6 @@
 
         return {init};
     })();
-
+    
 
     $(document).ready(()=>{App.init()});
