@@ -89,7 +89,7 @@ export const TableModule = (() => {
     
             form.trigger("reset");
         } else {
-            openToast("Add Required Fields before submitting", "danger");
+            // openToast("Add Required Fields before submitting", "danger");
         }
     });
 

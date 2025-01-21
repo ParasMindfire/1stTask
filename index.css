@@ -553,6 +553,7 @@ body{
     border: 1px solid #007BFF;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
     outline: none;
+    cursor: none;
 }
 
 .nameClass input:hover, .bday input:hover {
@@ -593,6 +594,10 @@ input:hover::placeholder{
     outline: none;
     border: 1px solid #ccc;
     transition:all 0.3s ease;
+}
+
+.mailPassClass input:focus{
+    cursor:none;
 }
 
 .mailPassClass input:hover{
@@ -761,7 +766,7 @@ input:hover::placeholder{
 
 .about textArea:focus{
     outline:none;
-    cursor: auto;
+    cursor: none;
 }
 
 .about textArea::placeholder{

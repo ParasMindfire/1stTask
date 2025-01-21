@@ -23,5 +23,6 @@ export const RenderFileModule = (() => {
     $("#file").off("change").on("change", renderFile);
 
     window.renderFile = renderFile;
+    
     return { renderFile };
 })();

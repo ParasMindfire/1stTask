@@ -74,7 +74,10 @@ export const AddressModule=(()=>{
 
 
 
-    return {checkCountry,checkState}
+    return {
+        checkCountry: checkCountry,
+        checkState: checkState
+    }
 
 
 })();

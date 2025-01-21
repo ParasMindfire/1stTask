@@ -100,13 +100,13 @@
 
                                         <label class="commonLabel">Full Name*</label>
                                         
-                                        <input type="text" id="first_name" class="nameInput" name="first_name">
+                                        <input type="text" id="first_name" class="nameInput" name="first_name" onblur="validateFirstName()">
         
                                         <br>
                                         <!-- error message -->
                                     </div>
                                     <div class="errorDiv">
-                                        <span id="fname-error" class="error-message"></span>
+                                        <span id="first_name-error" class="error-message"></span>
                                      </div>
                                 </div>
     
@@ -118,7 +118,7 @@
                                             <div class="commonLabel">
                                                 Gender*
                                             </div>
-                                            <select name="genderElem" id="gender">
+                                            <select name="genderElem" id="gender" onblur="validateGender()">
                                                 <option>-Choose Gender-</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -141,7 +141,7 @@
                                             <div class="commonLabel">
                                                 Birthday*
                                             </div>
-                                            <input id="birthday" type="date" name="birthday">
+                                            <input id="birthday" type="date" name="birthday" onblur="validateBirthday()">
             
                                             <br>
             
@@ -149,7 +149,7 @@
                                         </div>
 
                                         <div class="errorDiv">
-                                            <span id="confirmBday-error" class="error-message "></span>
+                                            <span id="birthday-error" class="error-message "></span>
                                          </div>
                                     </div>
                                 </div>
@@ -158,9 +158,9 @@
                                 <div class="commonDiv">
                                     <div class="about">
                                         <div class="commonLabel">
-                                            About You
+                                            About You*
                                         </div>
-                                        <textarea name="" id="textArea"></textarea>
+                                        <textarea name="" id="textArea" onblur="validateAboutYou()"></textarea>
                                     </div>
 
                                     <div class="errorDiv">
@@ -184,13 +184,13 @@
                                             <div class="commonLabel">
                                                 Email*
                                             </div>
-                                            <input type="text" id="mail" class="nameInput" name="mail" onfocusout="myEmail()">
+                                            <input type="text" id="mail" class="nameInput" name="mail" onblur="validateEmail()">
             
                                             <br>
                                             <!-- error message -->
 
                                             <div class="errorDiv">
-                                                <span id="email-error" class="error-message"></span>
+                                                <span id="mail-error" class="error-message"></span>
                                             </div>
 
                                             <br>
@@ -198,14 +198,14 @@
                 
                                         <!-- <div class="passwordClass"> -->
                                             <div class="commonLabel">
-                                                Password
+                                                Password*
                                             </div>
-                                            <input type="password" id="password" class="nameInput" name="password">
+                                            <input type="password" id="password" class="nameInput" name="password" onblur="validatePassword()">
             
                                             <br>
                                             <!-- error message -->
                                              <div class="errorDiv">
-                                                <span id="pass-error" class="error-message"></span>
+                                                <span id="password-error" class="error-message"></span>
                                              </div>
 
                                              <br>
@@ -215,7 +215,7 @@
             
                                         <!-- <div class="ConfirmpasswordClass"> -->
                                             <div class="commonLabel">
-                                                Confirm Password
+                                                Confirm Password*
                                             </div>
 
                                             <input type="password" id="ConfirmpasswordClass" class="nameInput" name="ConfirmpasswordClass" onfocusout="confirmPass()">
@@ -223,7 +223,7 @@
                                             <br>
 
                                             <div class="errorDiv">
-                                                <span id="confirm-password-error" class="error-message "></span>
+                                                <span id="confirmpassword-error" class="error-message "></span>
                                             </div>
                                                 
             
@@ -238,9 +238,9 @@
                                 <div class="commonDiv">
                                     <div class="selectClass">
                                         <div class="commonLabel">
-                                            Branch
+                                            Branch*
                                         </div>
-                                        <select name="selectElem" id="brranch">
+                                        <select name="selectElem" id="brranch" onblur="validateBranch()">
                                             <option>---Branch---</option>
                                             <option value="CS">CS</option>
                                             <option value="IT">IT</option>
@@ -252,7 +252,7 @@
                                     </div>
 
                                     <div class="errorDiv">
-                                        <span id="select-error" class="error-message "></span>
+                                        <span id="brranch-error" class="error-message "></span>
                                      </div>
                                 </div>
             
@@ -261,9 +261,9 @@
                                     <div class="commonDiv">
                                         <div class="address">
                                             <div class="commonLabel">
-                                                Select Country
+                                                Select Country*
                                             </div>
-                                            <select id="CountryList" oninput="checkCountry()">
+                                            <select id="CountryList" oninput="checkCountry()" onblur="validateCountry()">
                                                 <option>--Select a Country--</option>
                                             </select>
                                         </div>
@@ -272,9 +272,9 @@
                                     <div class="commonDiv">
                                         <div class="address">
                                             <div class="commonLabel">
-                                                Select State
+                                                Select State*
                                             </div>
-                                            <select id="StateList" oninput="checkState()">
+                                            <select id="StateList" oninput="checkState()" onblur="validateState()">
                                                 <option>--Select a State--</option>
                                             </select>
                                         </div>
@@ -283,9 +283,9 @@
                                     <div class="commonDiv">
                                         <div class="address">
                                             <div class="commonLabel">
-                                                Select City
+                                                Select City*
                                             </div>
-                                            <select id="cityList">
+                                            <select id="cityList" onblur="validateCity()">
                                                 <option>--Select a city--</option>
                                             </select>
                                         </div>
@@ -411,8 +411,16 @@
         
     </div>
 
+    
     <script type="module" src="jquery-3.7.1.min.js"></script>
-    <script type="module" src="index.js"></script> 
+    <script type="module" src="Jquery/Toast.js"></script>
+    <script type="module" src="Jquery/RenderFile.js"></script>
+    <script type="module" src="Jquery/Address.js"></script>
+    <script type="module" src="Jquery/StepOneValidation.js"></script>
+    <script type="module" src="Jquery/StepTwoValidation.js"></script>
+    <script type="module" src="index.js"></script>
+    
+
 
 
 </body>
